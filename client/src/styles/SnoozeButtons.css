@@ -1,0 +1,43 @@
+
+.snooze-container {
+  margin-top: 14px;
+}
+
+.snooze-container p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #777;
+}
+
+.snooze-options {
+  display: flex;
+  gap: 10px;
+}
+
+.snooze-options button {
+  padding: 8px 15px;
+  border: 1px solid #e6c9c1;
+  border-radius: 8px;
+  background: #fff5f1;
+  color: #9b6257;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.snooze-options button:hover {
+  background: #f3ddd5;
+}
+
+.snooze-options button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.snooze-error {
+  display: block;
+  margin-top: 8px;
+  color: #c0392b;
+}

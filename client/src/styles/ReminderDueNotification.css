@@ -1,0 +1,136 @@
+
+/* In-app due reminder notification */
+
+.reminders-due-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  margin: 22px 0;
+  background: #fff5f0;
+  border: 1px solid #edc9bd;
+  border-radius: 16px;
+  color: #59413b;
+  box-shadow: 0 4px 14px rgba(120, 75, 60, 0.07);
+}
+
+.reminders-due-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #f5dfd7;
+  color: #a66c60;
+}
+
+.reminders-due-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.reminders-due-content > strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  color: #754c43;
+}
+
+.reminders-due-content > p {
+  margin: 0 0 5px;
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.reminders-due-content > span {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 12px;
+  color: #92766d;
+}
+
+.reminders-due-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #896b62;
+  cursor: pointer;
+}
+
+.reminders-due-dismiss:hover {
+  background: #f3e1da;
+}
+
+/* Snooze options */
+
+.snooze-container {
+  margin-top: 10px;
+}
+
+.snooze-heading {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #79564d;
+}
+
+.snooze-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.snooze-button {
+  padding: 8px 16px;
+  border: 1px solid #d9aaa0;
+  border-radius: 9px;
+  background: #fffdfb;
+  color: #895c52;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.snooze-button:hover:not(:disabled) {
+  background: #f4e2dc;
+  transform: translateY(-1px);
+}
+
+.snooze-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.snooze-error {
+  margin: 10px 0 0;
+  color: #b04444;
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  .reminders-due-alert {
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .snooze-options {
+    gap: 7px;
+  }
+
+  .snooze-button {
+    padding: 8px 12px;
+  }
+}

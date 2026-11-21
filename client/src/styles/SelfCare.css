@@ -1,0 +1,427 @@
+
+.selfcare-page {
+  padding: 32px 38px 45px;
+  max-width: 1450px;
+  margin: 0 auto;
+  color: #514442;
+}
+
+/* Header */
+
+.selfcare-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 34px;
+  border-radius: 22px;
+  background: linear-gradient(120deg, #fae9e5, #fff4ed);
+  margin-bottom: 25px;
+}
+
+.selfcare-eyebrow {
+  display: inline-block;
+  color: #bd8082;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.selfcare-header h1 {
+  color: #8f5d62;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.selfcare-header p {
+  max-width: 600px;
+  color: #927d78;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.selfcare-header-icon {
+  width: 78px;
+  height: 78px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 23px;
+  background: #fff;
+  color: #c08088;
+}
+
+/* Intro */
+
+.selfcare-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 21px;
+  border: 1px solid #f2e5df;
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 35px;
+}
+
+.selfcare-intro-icon {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: #fae9e8;
+  color: #bc7b83;
+}
+
+.selfcare-intro h3 {
+  color: #805d5b;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.selfcare-intro p {
+  color: #978783;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Section headings */
+
+.selfcare-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.selfcare-section-heading h2 {
+  color: #594846;
+  font-size: 22px;
+  margin-bottom: 7px;
+}
+
+.selfcare-section-heading p {
+  color: #9c8b86;
+  font-size: 13px;
+}
+
+.symptom-count {
+  padding: 9px 14px;
+  border-radius: 20px;
+  background: #faeae8;
+  color: #ae737b;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Symptom cards */
+
+.symptom-section {
+  margin-bottom: 38px;
+}
+
+.symptom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.symptom-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 85px;
+  padding: 17px;
+  border: 1px solid #f0e5df;
+  border-radius: 15px;
+  background: #fff;
+  color: #725f5a;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  transition: 0.2s ease;
+}
+
+.symptom-card:hover {
+  border-color: #dba8a7;
+  transform: translateY(-2px);
+}
+
+.symptom-card.selected {
+  border: 1.5px solid #c78b91;
+  background: #fff3f1;
+  color: #a66d75;
+}
+
+.symptom-emoji {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: #fbf0ec;
+  font-size: 21px;
+  flex-shrink: 0;
+}
+
+.symptom-check {
+  margin-left: auto;
+  color: #b87880;
+  font-size: 18px;
+}
+
+/* Recommendations */
+
+.recommendation-section {
+  margin-bottom: 35px;
+}
+
+.recommendation-sparkle {
+  color: #c18b91;
+  flex-shrink: 0;
+}
+
+.recommendation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.symptom-recommendation {
+  padding: 25px;
+  border: 1px solid #f0e5df;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(111, 75, 66, 0.035);
+}
+
+.recommendation-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  color: #bd8188;
+  margin-bottom: 25px;
+}
+
+.recommendation-title h3 {
+  color: #725452;
+  font-size: 17px;
+  margin-bottom: 7px;
+}
+
+.recommendation-title p {
+  color: #998984;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.recommendation-title > svg {
+  flex-shrink: 0;
+}
+
+.recommendation-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #a66e76;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.pose-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin-bottom: 25px;
+}
+
+.pose-card {
+  padding: 18px;
+  border: 1px solid #f1e7e1;
+  border-radius: 14px;
+  background: #fffaf7;
+}
+
+.pose-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.pose-card-top h4 {
+  color: #755957;
+  font-size: 14px;
+}
+
+.pose-card-top span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #b17c80;
+  font-size: 11px;
+}
+
+.pose-card > p {
+  color: #8f817c;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.pose-benefit {
+  padding: 10px;
+  margin-top: 13px;
+  border-radius: 9px;
+  background: #f8eeea;
+  color: #98716e;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.selfcare-tips {
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selfcare-tips li {
+  color: #887873;
+  font-size: 13px;
+  line-height: 1.5;
+  padding-left: 3px;
+}
+
+.selfcare-tips li::marker {
+  color: #c18a8c;
+}
+
+/* Empty state */
+
+.selfcare-empty {
+  text-align: center;
+  padding: 38px 20px;
+  margin-bottom: 30px;
+  border: 1px dashed #e8d6cf;
+  border-radius: 18px;
+  background: #fffaf7;
+}
+
+.selfcare-empty-icon {
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 15px;
+  border-radius: 17px;
+  background: #fae9e7;
+  color: #bd8088;
+}
+
+.selfcare-empty h3 {
+  color: #775b57;
+  font-size: 16px;
+  margin-bottom: 9px;
+}
+
+.selfcare-empty p {
+  max-width: 450px;
+  margin: 0 auto;
+  color: #9b8b85;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Disclaimer */
+
+.selfcare-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 19px;
+  border-radius: 14px;
+  background: #f8f1ed;
+  color: #a67b75;
+}
+
+.selfcare-disclaimer > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.selfcare-disclaimer h4 {
+  color: #86615e;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.selfcare-disclaimer p {
+  color: #96837c;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .selfcare-page {
+    padding: 25px 22px 35px;
+  }
+
+  .symptom-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .selfcare-page {
+    padding: 20px 15px 30px;
+  }
+
+  .selfcare-header {
+    padding: 23px 19px;
+  }
+
+  .selfcare-header h1 {
+    font-size: 24px;
+  }
+
+  .selfcare-header-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 16px;
+  }
+
+  .selfcare-section-heading h2 {
+    font-size: 18px;
+  }
+
+  .symptom-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .symptom-card {
+    min-height: 70px;
+  }
+
+  .pose-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .symptom-recommendation {
+    padding: 18px;
+  }
+
+  .symptom-count {
+    font-size: 10px;
+    padding: 8px 10px;
+  }
+}

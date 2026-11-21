@@ -1,0 +1,507 @@
+
+.wellness-page {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 28px;
+  color: #493b3b;
+}
+
+.wellness-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.wellness-eyebrow {
+  display: block;
+  color: #b47e7d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 9px;
+}
+
+.wellness-header h1 {
+  font-size: 30px;
+  margin: 0 0 9px;
+  color: #493b3b;
+}
+
+.wellness-header p,
+.wellness-section-heading p {
+  color: #887979;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.wellness-refresh,
+.wellness-error button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 11px 17px;
+  border: 1px solid #ead7d4;
+  border-radius: 12px;
+  background: #fffaf8;
+  color: #a46d6b;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.wellness-refresh:hover,
+.wellness-error button:hover {
+  background: #f6e8e4;
+  transform: translateY(-2px);
+}
+
+.wellness-current-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 27px;
+  border: 1px solid #f0ddda;
+  border-radius: 20px;
+  background: linear-gradient(115deg, #fff0eb, #fffaf6);
+  margin-bottom: 38px;
+}
+
+.current-card-icon,
+.phase-intro-icon {
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 19px;
+  color: #bd8580;
+  background: #f8dfd9;
+}
+
+.current-card-content h2,
+.phase-intro-card h2 {
+  margin: 0 0 8px;
+  color: #594343;
+  font-size: 21px;
+}
+
+.current-card-content > p,
+.phase-intro-card p {
+  margin: 0;
+  color: #877575;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.current-cycle-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 17px;
+}
+
+.current-cycle-details span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #986f6b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.wellness-primary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: #b77e79;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.wellness-primary-link:hover {
+  background: #9f6865;
+}
+
+.wellness-section {
+  margin-bottom: 25px;
+}
+
+.wellness-section-heading h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  color: #594343;
+}
+
+.phase-selector {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 22px;
+}
+
+.phase-button {
+  min-height: 68px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  border: 1px solid #eee1de;
+  border-radius: 14px;
+  background: #fffdfc;
+  color: #806d6b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.phase-button:hover {
+  border-color: #dcb5ae;
+  background: #fff6f2;
+}
+
+.phase-button.selected {
+  border-color: #c38b85;
+  background: #f8e9e5;
+  color: #9c6662;
+  box-shadow: 0 4px 14px rgba(160, 105, 100, 0.08);
+}
+
+.current-phase-tag {
+  width: 100%;
+  color: #a66f69;
+  font-size: 10px;
+  text-align: center;
+}
+
+.phase-intro-card {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  margin: 30px 0 20px;
+  padding: 23px;
+  border-radius: 17px;
+  background: #fdf4f0;
+  border: 1px solid #f0e2de;
+}
+
+.wellness-recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.recommendation-card {
+  padding: 23px;
+  border: 1px solid #eee5e1;
+  border-radius: 17px;
+  background: #fff;
+  min-width: 0;
+}
+
+.recommendation-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 20px;
+}
+
+.recommendation-heading > div:last-child > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #b08a83;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.recommendation-heading h3 {
+  margin: 0;
+  color: #594343;
+  font-size: 17px;
+}
+
+.recommendation-icon {
+  width: 43px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  flex-shrink: 0;
+}
+
+.nutrition-icon {
+  color: #a27d63;
+  background: #f5eadf;
+}
+
+.yoga-icon {
+  color: #a47785;
+  background: #f6e8ef;
+}
+
+.selfcare-icon {
+  color: #bd807c;
+  background: #fae9e5;
+}
+
+.recommendation-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recommendation-card ul li {
+  position: relative;
+  padding-left: 19px;
+  margin-bottom: 14px;
+  color: #796d6a;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.recommendation-card ul li:last-child {
+  margin-bottom: 0;
+}
+
+.recommendation-card ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d6a49c;
+}
+
+.yoga-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.yoga-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px;
+  border-radius: 12px;
+  background: #fdf8f6;
+}
+
+.yoga-item h4 {
+  margin: 0 0 5px;
+  color: #624c4b;
+  font-size: 14px;
+}
+
+.yoga-item p {
+  margin: 0;
+  color: #897b78;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.yoga-duration {
+  flex-shrink: 0;
+  color: #a47772;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.selfcare-card {
+  grid-column: 1 / -1;
+}
+
+.wellness-bottom-note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 22px;
+  border-radius: 16px;
+  background: #f7f0eb;
+}
+
+.bottom-note-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 13px;
+  background: #f0dfd7;
+  color: #a47c70;
+}
+
+.wellness-bottom-note h3 {
+  margin: 0 0 5px;
+  font-size: 15px;
+  color: #624b46;
+}
+
+.wellness-bottom-note p {
+  margin: 0;
+  color: #827471;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.bottom-note-sparkle {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: #bb9287;
+}
+
+.wellness-disclaimer {
+  margin: 20px 0 0;
+  color: #a0938e;
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.wellness-loading,
+.wellness-error {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 13px;
+}
+
+.wellness-loading {
+  color: #a87973;
+}
+
+.wellness-loader {
+  animation: wellness-spin 1s linear infinite;
+}
+
+@keyframes wellness-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.wellness-error {
+  padding: 25px;
+  color: #a87973;
+}
+
+.wellness-error h2 {
+  margin: 0;
+  color: #594343;
+}
+
+.wellness-error p {
+  color: #887979;
+  font-size: 14px;
+}
+
+@media (max-width: 850px) {
+  .wellness-page {
+    padding: 20px;
+  }
+
+  .phase-selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .wellness-page {
+    padding: 15px;
+  }
+
+  .wellness-header {
+    align-items: flex-start;
+  }
+
+  .wellness-header h1 {
+    font-size: 24px;
+  }
+
+  .wellness-refresh {
+    padding: 9px;
+    font-size: 12px;
+  }
+
+  .wellness-current-card {
+    align-items: flex-start;
+    padding: 19px;
+    gap: 13px;
+  }
+
+  .current-card-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .current-card-content h2 {
+    font-size: 18px;
+  }
+
+  .current-cycle-details {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .phase-selector {
+    gap: 9px;
+  }
+
+  .phase-button {
+    padding: 11px 7px;
+    font-size: 12px;
+  }
+
+  .phase-intro-card {
+    padding: 17px;
+  }
+
+  .phase-intro-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .wellness-recommendation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selfcare-card {
+    grid-column: auto;
+  }
+
+  .recommendation-card {
+    padding: 18px;
+  }
+
+  .wellness-bottom-note {
+    padding: 16px;
+  }
+
+  .bottom-note-sparkle {
+    display: none;
+  }
+}
