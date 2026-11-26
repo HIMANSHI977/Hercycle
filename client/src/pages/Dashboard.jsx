@@ -784,7 +784,7 @@ const Dashboard = () => {
             Discover relaxing movements for your body.
           </p>
 
-          <button type="button" onClick={() => navigate("/self-care")}> 
+          <button type="button" onClick={() => navigate("/self-care")}>
             Explore yoga <ArrowRight size={16} />
           </button>
         </div>
@@ -803,7 +803,7 @@ const Dashboard = () => {
             Find nutritious Indian meals and food ideas.
           </p>
 
-          <button type="button" onClick={() => navigate("/diet")}> 
+          <button type="button" onClick={() => navigate("/diet")}>
             Explore meals <ArrowRight size={16} />
           </button>
         </div>
@@ -822,7 +822,7 @@ const Dashboard = () => {
             Make time for your physical and emotional wellbeing.
           </p>
 
-          <button type="button" onClick={() => navigate("/self-care")}> 
+          <button type="button" onClick={() => navigate("/self-care")}>
             Explore tips <ArrowRight size={16} />
           </button>
         </div>

@@ -310,7 +310,7 @@ const SelfCare = () => {
     })
   );
 
-  const filteredSymptomOptions = symptomOptions.filter(symptom => 
+  const filteredSymptomOptions = symptomOptions.filter(symptom =>
     symptomFilter === "all" || symptom.category === symptomFilter
   );
 
