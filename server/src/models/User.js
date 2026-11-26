@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
@@ -45,6 +44,12 @@ const userSchema = new mongoose.Schema(
         min: 1,
         max: 15,
         default: 5
+      },
+      hydrationGoalMl: {
+        type: Number,
+        min: 500,
+        max: 6000,
+        default: 2000
       }
     }
   },

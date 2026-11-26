@@ -46,9 +46,37 @@ const reminderSchema = new mongoose.Schema(
     isNotified: {
       type: Boolean,
       default: false
+    },
+
+    // Notification processing and retry fields
+    isProcessing: {
+      type: Boolean,
+      default: false
+    },
+
+    processingAt: {
+      type: Date,
+      default: null
+    },
+
+    notificationAttempts: {
+      type: Number,
+      default: 0
+    },
+
+    lastNotificationAttemptAt: {
+      type: Date,
+      default: null
+    },
+
+    lastNotificationError: {
+      type: String,
+      default: null
     }
   },
-  { timestamps: true }
+  {
+    timestamps: true
+  }
 );
 
 reminderSchema.index({ user: 1, scheduledAt: 1 });

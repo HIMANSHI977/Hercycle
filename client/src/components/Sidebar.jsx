@@ -1,4 +1,3 @@
-
 import {
   LayoutDashboard,
   CalendarDays,
@@ -7,7 +6,10 @@ import {
   Leaf,
   Settings,
   Droplets,
-  X
+  BookOpen,
+  X,
+  ShoppingBag,
+  Stethoscope
 } from "lucide-react";
 
 import { NavLink } from "react-router-dom";
@@ -43,9 +45,34 @@ const menuItems = [
     icon: Droplets,
     path: "/reminders"
   },
+  {
+    name: "Hydration",
+    icon: Droplets,
+    path: "/hydration"
+  },
   { name: "Yoga & Self-Care",
      icon: Heart,
       path:  "/self-care" },
+  {
+    name: "Health Library",
+    icon: BookOpen,
+    path: "/education"
+  },
+  {
+    name: "Period Preparation",
+    icon: CalendarDays,
+    path: "/period-preparation"
+  },
+  {
+    name: "Product Stock",
+    icon: ShoppingBag,
+    path: "/product-stock"
+  },
+  {
+    name: "Appointments",
+    icon: Stethoscope,
+    path: "/appointments"
+  },
 ];
 
 const Sidebar = ({ open, setOpen }) => {

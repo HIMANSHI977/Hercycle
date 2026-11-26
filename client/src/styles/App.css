@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +6,6 @@
 
 body {
   font-family: "Segoe UI", sans-serif;
-  background: #faf7f4;
-  color: #403b3a;
 }
 
 button {
@@ -87,12 +84,14 @@ button {
   text-align: left;
   font-size: 14px;
   transition: 0.2s;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .menu-item:hover,
 .menu-item.active {
-  background: #f9e9e8;
-  color: #bd7881;
+  background: var(--hc-primary-soft);
+  color: var(--hc-primary);
 }
 
 .sidebar-bottom {
@@ -102,7 +101,7 @@ button {
 .sidebar-tip {
   padding: 18px;
   border-radius: 15px;
-  background: #fbf0ec;
+  background: linear-gradient(145deg, var(--hc-accent-soft), var(--hc-primary-soft));
   color: #bd7881;
   margin-bottom: 20px;
 }
@@ -159,10 +158,10 @@ button {
 }
 
 .notification-btn {
-  background: #faf5f3;
+  background: var(--hc-primary-soft);
   padding: 11px;
   border-radius: 50%;
-  color: #9d7775;
+  color: var(--hc-primary);
   position: relative;
 }
 
@@ -282,4 +281,253 @@ button {
   .navbar-right {
     gap: 10px;
   }
+}
+
+html,
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body,
+.app-layout,
+.app-main,
+.dashboard,
+.ai-page,
+.diet-page,
+.wellness-page,
+.selfcare-page,
+.education-page,
+.settings-page,
+.hydration-page,
+.period-preparation-page,
+.product-stock-page,
+.appointments-page {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html[data-theme="light"] body,
+html[data-theme="light"] .app-layout,
+html[data-theme="light"] .app-main {
+  background: var(--hc-background);
+  color: var(--hc-text);
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] #root,
+html[data-theme="dark"] .app-layout,
+html[data-theme="dark"] .app-main,
+html[data-theme="dark"] .dashboard,
+html[data-theme="dark"] .ai-page,
+html[data-theme="dark"] .diet-page,
+html[data-theme="dark"] .wellness-page,
+html[data-theme="dark"] .selfcare-page,
+html[data-theme="dark"] .education-page,
+html[data-theme="dark"] .settings-page,
+html[data-theme="dark"] .hydration-page,
+html[data-theme="dark"] .period-preparation-page,
+html[data-theme="dark"] .product-stock-page,
+html[data-theme="dark"] .appointments-page,
+html[data-theme="dark"] .cycle-tracker-page,
+html[data-theme="dark"] .reminders-page,
+html[data-theme="dark"] .auth-page {
+  background: var(--hc-background) !important;
+  color: var(--hc-text) !important;
+}
+
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .navbar,
+html[data-theme="dark"] .coming-soon,
+html[data-theme="dark"] .mobile-menu-button,
+html[data-theme="dark"] .auth-card,
+html[data-theme="dark"] .welcome-section,
+html[data-theme="dark"] .wellness-card,
+html[data-theme="dark"] .cycle-card,
+html[data-theme="dark"] .settings-card,
+html[data-theme="dark"] .education-card,
+html[data-theme="dark"] .hydration-card,
+html[data-theme="dark"] .hydration-history,
+html[data-theme="dark"] .product-stock-form,
+html[data-theme="dark"] .product-stock-list,
+html[data-theme="dark"] .appointment-form,
+html[data-theme="dark"] .appointment-history,
+html[data-theme="dark"] .preparation-checklist-card,
+html[data-theme="dark"] .preparation-detail-card,
+html[data-theme="dark"] .ai-chat-card,
+html[data-theme="dark"] .diet-meal-card,
+html[data-theme="dark"] .recommendation-card,
+html[data-theme="dark"] .pose-card,
+html[data-theme="dark"] .symptom-recommendation,
+html[data-theme="dark"] .insights-card,
+html[data-theme="dark"] .recent-history,
+html[data-theme="dark"] .reminder-card,
+html[data-theme="dark"] .cycle-form-card,
+html[data-theme="dark"] .cycle-history {
+  background: var(--hc-surface) !important;
+  border-color: var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+html[data-theme="dark"] .sidebar-tip,
+html[data-theme="dark"] .brand-icon,
+html[data-theme="dark"] .profile-avatar,
+html[data-theme="dark"] .notification-btn,
+html[data-theme="dark"] .welcome-icon,
+html[data-theme="dark"] .cycle-icon,
+html[data-theme="dark"] .wellness-icon,
+html[data-theme="dark"] .settings-icon,
+html[data-theme="dark"] .education-card-icon,
+html[data-theme="dark"] .hydration-progress-icon,
+html[data-theme="dark"] .diet-water-icon,
+html[data-theme="dark"] .period-estimate-icon,
+html[data-theme="dark"] .recommendation-icon {
+  background: var(--hc-primary-soft) !important;
+  color: var(--hc-primary) !important;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] strong {
+  color: var(--hc-text) !important;
+}
+
+html[data-theme="dark"] p,
+html[data-theme="dark"] small,
+html[data-theme="dark"] label,
+html[data-theme="dark"] span,
+html[data-theme="dark"] li,
+html[data-theme="dark"] .tracker-heading p,
+html[data-theme="dark"] .tracker-section-title p,
+html[data-theme="dark"] .history-details p,
+html[data-theme="dark"] .wellness-card p {
+  color: var(--hc-text-soft) !important;
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select,
+html[data-theme="dark"] .search-box,
+html[data-theme="dark"] .education-search {
+  background: var(--hc-surface) !important;
+  color: var(--hc-text) !important;
+  border-color: var(--hc-border) !important;
+}
+
+html[data-theme="dark"] .menu-item,
+html[data-theme="dark"] button,
+html[data-theme="dark"] .profile {
+  color: var(--hc-text-soft) !important;
+}
+
+html[data-theme="dark"] .menu-item:hover,
+html[data-theme="dark"] .menu-item.active,
+html[data-theme="dark"] .theme-options button.active,
+html[data-theme="dark"] .education-category-filter button.active,
+html[data-theme="dark"] .phase-button.selected,
+html[data-theme="dark"] .symptom-card.selected {
+  background: var(--hc-primary-soft) !important;
+  color: var(--hc-primary) !important;
+  border-color: var(--hc-primary) !important;
+}
+
+html[data-theme="dark"] button[type="submit"],
+html[data-theme="dark"] .ai-send-button,
+html[data-theme="dark"] .ai-button,
+html[data-theme="dark"] .auth-card button,
+html[data-theme="dark"] .preparation-save-button,
+html[data-theme="dark"] .hydration-custom-form button,
+html[data-theme="dark"] .product-stock-form-actions button,
+html[data-theme="dark"] .appointment-form > button,
+html[data-theme="dark"] .tracker-form-actions button:not(.cancel-button) {
+  background: var(--hc-primary) !important;
+  color: #10232a !important;
+  border-color: var(--hc-primary) !important;
+}
+
+html[data-theme="light"] {
+  --hc-button-primary: #167d88;
+  --hc-button-primary-hover: #116873;
+}
+
+html[data-theme="light"] .sidebar,
+html[data-theme="light"] .navbar,
+html[data-theme="light"] .app-layout,
+html[data-theme="light"] .app-main,
+html[data-theme="light"] .auth-card,
+html[data-theme="light"] .welcome-section,
+html[data-theme="light"] .cycle-card,
+html[data-theme="light"] .wellness-card,
+html[data-theme="light"] .settings-card,
+html[data-theme="light"] .education-card,
+html[data-theme="light"] .hydration-card,
+html[data-theme="light"] .hydration-history,
+html[data-theme="light"] .period-estimate-card,
+html[data-theme="light"] .preparation-checklist-card,
+html[data-theme="light"] .preparation-detail-card,
+html[data-theme="light"] .product-stock-form,
+html[data-theme="light"] .product-stock-list,
+html[data-theme="light"] .appointment-form,
+html[data-theme="light"] .appointment-history,
+html[data-theme="light"] .ai-chat-card,
+html[data-theme="light"] .diet-meal-card,
+html[data-theme="light"] .recommendation-card,
+html[data-theme="light"] .pose-card,
+html[data-theme="light"] .reminder-card {
+  background: var(--hc-surface) !important;
+  border-color: var(--hc-border) !important;
+}
+
+html[data-theme="light"] .brand-icon,
+html[data-theme="light"] .profile-avatar,
+html[data-theme="light"] .notification-btn,
+html[data-theme="light"] .welcome-icon,
+html[data-theme="light"] .cycle-icon,
+html[data-theme="light"] .wellness-icon,
+html[data-theme="light"] .settings-icon,
+html[data-theme="light"] .education-card-icon,
+html[data-theme="light"] .hydration-progress-icon,
+html[data-theme="light"] .diet-water-icon,
+html[data-theme="light"] .period-estimate-icon {
+  background: var(--hc-primary-soft) !important;
+  color: var(--hc-primary) !important;
+}
+
+html[data-theme="light"] .menu-item:hover,
+html[data-theme="light"] .menu-item.active,
+html[data-theme="light"] .theme-options button.active,
+html[data-theme="light"] .education-category-filter button.active,
+html[data-theme="light"] .ai-language-switch button.active,
+html[data-theme="light"] .phase-button.selected,
+html[data-theme="light"] .diet-phase-tab.active,
+html[data-theme="light"] .symptom-card.selected {
+  background: var(--hc-primary-soft) !important;
+  color: var(--hc-primary) !important;
+  border-color: var(--hc-primary) !important;
+}
+
+html[data-theme="light"] button[type="submit"],
+html[data-theme="light"] .auth-card button,
+html[data-theme="light"] .ai-send-button,
+html[data-theme="light"] .ai-button,
+html[data-theme="light"] .preparation-save-button,
+html[data-theme="light"] .hydration-custom-form button,
+html[data-theme="light"] .product-stock-form-actions button,
+html[data-theme="light"] .appointment-form > button,
+html[data-theme="light"] .tracker-form-actions button:not(.cancel-button) {
+  background: var(--hc-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--hc-primary) !important;
+}
+
+html[data-theme="light"] button[type="submit"]:hover,
+html[data-theme="light"] .hydration-custom-form button:hover,
+html[data-theme="light"] .preparation-save-button:hover,
+html[data-theme="light"] .product-stock-form-actions button:hover,
+html[data-theme="light"] .appointment-form > button:hover {
+  background: var(--hc-button-primary-hover) !important;
 }

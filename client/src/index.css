@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
 
 * {
   margin: 0;
@@ -11,11 +10,103 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --hc-background: #f2f6fb;
+  --hc-surface: #ffffff;
+  --hc-surface-soft: #eaf1fa;
+  --hc-border: #d8e3f1;
+  --hc-text: #1f3047;
+  --hc-text-soft: #5c6f89;
+  --hc-muted: #8798ae;
+  --hc-primary: #3978c5;
+  --hc-primary-soft: #e4effc;
+  --hc-accent: #638bd1;
+  --hc-accent-soft: #edf3fc;
+  --hc-sage: #7698c7;
+  --hc-sage-soft: #e9f0f9;
+  --hc-shadow: 0 18px 45px rgba(42, 82, 137, 0.12);
+  --hc-shadow-soft: 0 8px 24px rgba(42, 82, 137, 0.07);
+  --hc-radius-large: 26px;
+  --hc-radius-medium: 19px;
+  --hc-radius-small: 13px;
+}
+
+html[data-theme="dark"] {
+  --hc-background: #111b29;
+  --hc-surface: #1b2a3e;
+  --hc-surface-soft: #253851;
+  --hc-border: #344a68;
+  --hc-text: #edf4ff;
+  --hc-text-soft: #bdcde2;
+  --hc-muted: #91a7c5;
+  --hc-primary: #8bb8f3;
+  --hc-primary-soft: #263f61;
+  --hc-accent: #9bbdf1;
+  --hc-accent-soft: #2c405d;
+  --hc-sage: #a5c2e8;
+  --hc-sage-soft: #2a405d;
+}
+
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: #faf7f4;
+  min-width: 320px;
+  background: var(--hc-background);
+  color: var(--hc-text);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Manrope", "DM Sans", sans-serif;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+}
+
+h1 {
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 800;
+}
+
+h2 {
+  font-weight: 800;
+}
+
+h3,
+h4 {
+  font-weight: 700;
 }
 
 #root {
   min-height: 100vh;
+  background: var(--hc-background);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--hc-primary) 30%, transparent);
+  outline-offset: 2px;
 }

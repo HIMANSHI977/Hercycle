@@ -1,15 +1,16 @@
-
 import ai from "../config/gemini.js";
+import Cycle from "../models/Cycle.js";
+import Symptom from "../models/Symptom.js";
+
 const SYSTEM_INSTRUCTION = `
 You are HerCycle AI, a friendly menstrual wellness assistant.
 
 LANGUAGE RULES:
 1. If the user writes in Hindi, respond in Hindi.
-2. If the user writes in Hinglish (Hindi + English),
-   respond naturally in Hinglish using Roman Hindi.
+2. If the user writes in Hinglish (Hindi + English), respond naturally in Hinglish using Roman Hindi.
 3. If the user writes in English, respond in English.
-4. Keep language simple, friendly and easy to understand.
-5. Avoid overly technical medical terminology.
+4. If an explicit language preference is supplied, follow that preference while preserving the user's greeting or request style.
+5. Keep language simple, friendly and easy to understand.
 6. Explain difficult medical terms in simple words.
 
 YOUR RESPONSIBILITIES:
@@ -69,7 +70,7 @@ const generateWithRetry = async (request, maxRetries = 2) => {
 
 export const chatWithAI = async (req, res) => {
   try {
-    const { message, history = [] } = req.body;
+    const { message, history = [], language } = req.body;
 
     if (!process.env.GEMINI_API_KEY) {
       return res.status(503).json({
@@ -111,6 +112,13 @@ export const chatWithAI = async (req, res) => {
       });
     }
 
+    if (language !== undefined && !["en", "hi"].includes(language)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid language preference"
+      });
+    }
+
     const contents = [
       ...history.map((item) => ({
         role: item.role,
@@ -125,11 +133,42 @@ export const chatWithAI = async (req, res) => {
     const model =
       process.env.GEMINI_MODEL || "gemini-3.8-flash";
 
+    const languageInstruction = language === "hi"
+      ? "The selected response language is Hindi. Respond in natural, easy-to-read Hindi unless the user explicitly asks otherwise."
+      : language === "en"
+        ? "The selected response language is English. Respond in clear, easy-to-understand English unless the user explicitly asks otherwise."
+        : "";
+
+    const latestCycle = await Cycle.findOne({ user: req.user._id })
+      .sort({ periodStartDate: -1 })
+      .select("periodStartDate periodEndDate cycleLength flow")
+      .lean();
+
+    const recentSymptoms = await Symptom.find({ user: req.user._id })
+      .sort({ date: -1 })
+      .limit(5)
+      .select("date symptoms severity mood")
+      .lean();
+
+    const symptomSummary = recentSymptoms.length > 0
+      ? recentSymptoms.map((record) =>
+          `${record.symptoms.join(", ")} (${record.severity}, mood: ${record.mood})`
+        ).join("; ")
+      : "No recent symptoms recorded";
+
+    const personalizationContext = latestCycle || recentSymptoms.length > 0
+      ? `PRIVATE USER WELLNESS CONTEXT (use only when relevant):\n${latestCycle ? `Latest recorded period start: ${latestCycle.periodStartDate.toISOString().slice(0, 10)}. Flow: ${latestCycle.flow || "unknown"}.` : "No cycle record available."}\nRecent symptoms: ${symptomSummary}.\nDo not present this context as a diagnosis or guaranteed estimate.`
+      : "No private wellness context is available.";
+
+    const systemInstruction = languageInstruction
+      ? `${SYSTEM_INSTRUCTION}\n\nCURRENT LANGUAGE PREFERENCE:\n${languageInstruction}\n\n${personalizationContext}`
+      : `${SYSTEM_INSTRUCTION}\n\n${personalizationContext}`;
+
     const response = await generateWithRetry({
       model,
       contents,
       config: {
-        systemInstruction: SYSTEM_INSTRUCTION
+        systemInstruction
       }
     });
 

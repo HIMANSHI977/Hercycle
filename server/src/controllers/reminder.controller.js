@@ -10,15 +10,31 @@ const allowedTypes = [
   "general"
 ];
 
-// Create a reminder
+const notifyUser = (userId, event, data) => {
+  getIO().to(`user:${userId}`).emit(event, data);
+};
+
+// Create reminder
 export const createReminder = async (req, res) => {
   try {
     const { title, type, scheduledAt } = req.body;
 
-    if (!title || !type || !scheduledAt) {
+    if (
+      typeof title !== "string" ||
+      !title.trim() ||
+      !type ||
+      !scheduledAt
+    ) {
       return res.status(400).json({
         success: false,
         message: "Title, type and scheduled date are required"
+      });
+    }
+
+    if (title.trim().length > 100) {
+      return res.status(400).json({
+        success: false,
+        message: "Title cannot exceed 100 characters"
       });
     }
 
@@ -31,10 +47,13 @@ export const createReminder = async (req, res) => {
 
     const reminderDate = new Date(scheduledAt);
 
-    if (Number.isNaN(reminderDate.getTime())) {
+    if (
+      Number.isNaN(reminderDate.getTime()) ||
+      reminderDate <= new Date()
+    ) {
       return res.status(400).json({
         success: false,
-        message: "Invalid reminder date"
+        message: "Please select a valid future date and time"
       });
     }
 
@@ -45,21 +64,17 @@ export const createReminder = async (req, res) => {
       scheduledAt: reminderDate
     });
 
-    // Notify only the reminder owner
-    getIO()
-      .to(`user:${req.user._id}`)
-      .emit("new-reminder", reminder);
+    notifyUser(req.user._id, "new-reminder", reminder);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Reminder created successfully",
       reminder
     });
-
   } catch (error) {
     console.error("Create reminder error:", error.message);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Unable to create reminder"
     });
@@ -73,23 +88,22 @@ export const getReminders = async (req, res) => {
       user: req.user._id
     }).sort({ scheduledAt: 1 });
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       count: reminders.length,
       reminders
     });
-
   } catch (error) {
     console.error("Get reminders error:", error.message);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Unable to fetch reminders"
     });
   }
 };
 
-// Update a reminder
+// Update reminder
 export const updateReminder = async (req, res) => {
   try {
     const {
@@ -113,10 +127,14 @@ export const updateReminder = async (req, res) => {
     }
 
     if (title !== undefined) {
-      if (typeof title !== "string" || !title.trim()) {
+      if (
+        typeof title !== "string" ||
+        !title.trim() ||
+        title.trim().length > 100
+      ) {
         return res.status(400).json({
           success: false,
-          message: "Title cannot be empty"
+          message: "Title must contain 1–100 characters"
         });
       }
 
@@ -169,39 +187,51 @@ export const updateReminder = async (req, res) => {
       reminder.isActive = isActive;
     }
 
+    // Reset notification state if the schedule changes.
+    if (scheduledAt !== undefined) {
+      reminder.isNotified = false;
+      reminder.isProcessing = false;
+      reminder.processingAt = null;
+      reminder.notificationAttempts = 0;
+      reminder.lastNotificationAttemptAt = null;
+      reminder.lastNotificationError = null;
+    }
+
+    // Release processing if reminder is completed or deactivated.
+    if (reminder.isCompleted || !reminder.isActive) {
+      reminder.isProcessing = false;
+      reminder.processingAt = null;
+    }
+
     await reminder.save();
 
-    // Notify the reminder owner
-    getIO()
-      .to(`user:${req.user._id}`)
-      .emit("reminder-updated", reminder);
+    notifyUser(req.user._id, "reminder-updated", reminder);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Reminder updated successfully",
       reminder
     });
-
   } catch (error) {
     console.error("Update reminder error:", error.message);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Unable to update reminder"
     });
   }
 };
 
+// Snooze reminder
 export const snoozeReminder = async (req, res) => {
   try {
-    const { minutes } = req.body;
-
+    const minutes = Number(req.body.minutes);
     const allowedMinutes = [5, 10, 15];
 
-    if (!allowedMinutes.includes(Number(minutes))) {
+    if (!allowedMinutes.includes(minutes)) {
       return res.status(400).json({
         success: false,
-        message: "Snooze duration must be 5, 10, or 15 minutes."
+        message: "Snooze duration must be 5, 10, or 15 minutes"
       });
     }
 
@@ -213,46 +243,48 @@ export const snoozeReminder = async (req, res) => {
     if (!reminder) {
       return res.status(404).json({
         success: false,
-        message: "Reminder not found."
+        message: "Reminder not found"
       });
     }
 
     if (reminder.isCompleted || !reminder.isActive) {
       return res.status(400).json({
         success: false,
-        message: "This reminder cannot be snoozed."
+        message: "This reminder cannot be snoozed"
       });
     }
 
     reminder.scheduledAt = new Date(
-      Date.now() + Number(minutes) * 60 * 1000
+      Date.now() + minutes * 60 * 1000
     );
 
     reminder.isNotified = false;
+    reminder.isProcessing = false;
+    reminder.processingAt = null;
+    reminder.notificationAttempts = 0;
+    reminder.lastNotificationAttemptAt = null;
+    reminder.lastNotificationError = null;
 
     await reminder.save();
 
-    getIO().to(`user:${req.user._id}`).emit(
-      "reminder-updated",
-      reminder
-    );
+    notifyUser(req.user._id, "reminder-updated", reminder);
 
     return res.status(200).json({
       success: true,
-      message: `Reminder snoozed for ${minutes} minutes.`,
+      message: `Reminder snoozed for ${minutes} minutes`,
       reminder
     });
-
   } catch (error) {
     console.error("Snooze reminder error:", error.message);
 
     return res.status(500).json({
       success: false,
-      message: "Unable to snooze reminder."
+      message: "Unable to snooze reminder"
     });
   }
 };
 
+// Delete reminder
 export const deleteReminder = async (req, res) => {
   try {
     const reminder = await Reminder.findOneAndDelete({
@@ -267,22 +299,18 @@ export const deleteReminder = async (req, res) => {
       });
     }
 
-    // Notify the reminder owner
-    getIO()
-      .to(`user:${req.user._id}`)
-      .emit("reminder-deleted", {
-        _id: reminder._id
-      });
+    notifyUser(req.user._id, "reminder-deleted", {
+      _id: reminder._id
+    });
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Reminder deleted successfully"
     });
-
   } catch (error) {
     console.error("Delete reminder error:", error.message);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Unable to delete reminder"
     });

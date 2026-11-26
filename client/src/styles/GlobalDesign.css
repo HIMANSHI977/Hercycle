@@ -1,0 +1,1333 @@
+/* HerCycle unified visual system */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--hc-primary) transparent;
+}
+
+body,
+#root,
+.app-layout,
+.app-main {
+  background: var(--hc-background) !important;
+  color: var(--hc-text) !important;
+}
+
+.app-main {
+  background-image:
+    radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--hc-primary-soft) 75%, transparent), transparent 260px) !important;
+}
+
+.sidebar,
+.navbar,
+.mobile-menu-button,
+.coming-soon {
+  background: color-mix(in srgb, var(--hc-surface) 96%, transparent) !important;
+  border-color: var(--hc-border) !important;
+  backdrop-filter: blur(18px);
+}
+
+.sidebar {
+  box-shadow: 10px 0 38px rgba(25, 62, 73, 0.055) !important;
+}
+
+.brand-icon,
+.profile-avatar,
+.notification-btn,
+.welcome-icon,
+.cycle-icon,
+.wellness-icon,
+.ai-bot-avatar,
+.ai-message-avatar,
+.settings-icon,
+.education-card-icon,
+.hydration-progress-icon,
+.diet-water-icon,
+.period-estimate-icon,
+.recommendation-icon,
+.current-card-icon {
+  background: var(--hc-primary-soft) !important;
+  color: var(--hc-primary) !important;
+}
+
+.menu-item {
+  color: var(--hc-text-soft) !important;
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background: var(--hc-primary-soft) !important;
+  color: var(--hc-primary) !important;
+  border-color: var(--hc-border) !important;
+  box-shadow: 0 7px 18px rgba(22, 125, 136, 0.09) !important;
+  transform: translateX(2px);
+}
+
+.sidebar-tip {
+  background: var(--hc-accent-soft) !important;
+  border: 1px solid var(--hc-border) !important;
+  color: var(--hc-accent) !important;
+}
+
+.dashboard,
+.ai-page,
+.diet-page,
+.wellness-page,
+.selfcare-page,
+.education-page,
+.settings-page,
+.hydration-page,
+.period-preparation-page,
+.product-stock-page,
+.appointments-page,
+.cycle-tracker-page,
+.reminders-page,
+.auth-page,
+.auth-container {
+  background: transparent !important;
+  color: var(--hc-text) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+strong {
+  color: var(--hc-text) !important;
+}
+
+p,
+small,
+label,
+span,
+li {
+  color: inherit;
+}
+
+.welcome-section,
+.cycle-card,
+.wellness-card,
+.insights-card,
+.insights-summary,
+.recent-history,
+.symptom-guidance-panel,
+.symptom-guidance-card,
+.ai-chat-card,
+.ai-suggestions-section,
+.ai-safety-note,
+.ai-suggestion-card,
+.diet-meal-card,
+.diet-tips-card,
+.diet-hydration-card,
+.diet-phase-intro,
+.wellness-current-card,
+.phase-intro-card,
+.recommendation-card,
+.selfcare-intro,
+.symptom-recommendation,
+.pose-card,
+.education-card,
+.education-faq,
+.education-disclaimer,
+.settings-card,
+.hydration-progress-card,
+.hydration-card,
+.hydration-history,
+.period-estimate-card,
+.preparation-checklist-card,
+.preparation-detail-card,
+.product-stock-form,
+.product-stock-list,
+.product-stock-card,
+.appointment-form,
+.appointment-history,
+.appointment-card,
+.reminder-card,
+.reminder-form,
+.reminder-list,
+.cycle-card,
+.cycle-form,
+.cycle-list,
+.auth-card {
+  background: var(--hc-surface) !important;
+  border: 1px solid var(--hc-border) !important;
+  border-radius: var(--hc-radius-medium) !important;
+  box-shadow: var(--hc-shadow-soft) !important;
+}
+
+.wellness-card,
+.education-card,
+.ai-suggestion-card,
+.diet-meal-card,
+.pose-card,
+.product-stock-card,
+.appointment-card,
+.reminder-card,
+.cycle-card {
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease !important;
+}
+
+.wellness-card:hover,
+.education-card:hover,
+.ai-suggestion-card:hover,
+.diet-meal-card:hover,
+.product-stock-card:hover,
+.appointment-card:hover,
+.reminder-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--hc-primary) 38%, var(--hc-border)) !important;
+  box-shadow: var(--hc-shadow) !important;
+}
+
+input,
+textarea,
+select,
+.search-box,
+.education-search,
+.hydration-custom-form input,
+.preparation-detail-card select,
+.preparation-detail-card textarea,
+.appointment-form input,
+.appointment-form textarea,
+.product-stock-form input,
+.product-stock-form select,
+.product-stock-form textarea,
+.reminder-form input,
+.reminder-form select,
+.cycle-form input,
+.cycle-form select,
+.cycle-form textarea,
+.auth-card input {
+  background: var(--hc-surface) !important;
+  color: var(--hc-text) !important;
+  border: 1px solid var(--hc-border) !important;
+  border-radius: var(--hc-radius-small) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--hc-muted) !important;
+}
+
+button,
+.auth-card button,
+.ai-clear-button,
+.theme-options button,
+.education-category-filter button,
+.ai-language-switch button,
+.phase-button,
+.hydration-header button,
+.hydration-card button,
+.period-preparation-refresh,
+.product-stock-header button,
+.appointments-header > button,
+.appointment-actions button,
+.product-stock-actions button,
+.text-button {
+  border: 1px solid var(--hc-border) !important;
+  border-radius: var(--hc-radius-small) !important;
+  color: var(--hc-primary) !important;
+  background: var(--hc-surface) !important;
+  box-shadow: 0 5px 14px rgba(22, 125, 136, 0.055) !important;
+}
+
+button.primary,
+button[type="submit"],
+.ai-send-button,
+.ai-button,
+.preparation-save-button,
+.hydration-custom-form button,
+.product-stock-form-actions button,
+.appointment-form > button,
+.theme-options button.active,
+.education-category-filter button.active,
+.ai-language-switch button.active,
+.phase-button.selected,
+.reminder-submit,
+.cycle-submit {
+  background: var(--hc-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--hc-primary) !important;
+}
+
+button[type="submit"]:hover,
+.ai-send-button:hover,
+.preparation-save-button:hover,
+.hydration-custom-form button:hover,
+.product-stock-form-actions button:hover,
+.appointment-form > button:hover {
+  background: color-mix(in srgb, var(--hc-primary) 88%, #000) !important;
+  transform: translateY(-2px);
+}
+
+/* Blue palette across legacy page styles */
+.diet-hero,
+.selfcare-header,
+.wellness-current-card,
+.phase-intro-card,
+.cycle-card,
+.auth-page {
+  background: linear-gradient(115deg, var(--hc-primary-soft), var(--hc-surface), var(--hc-accent-soft)) !important;
+}
+
+.diet-eyebrow,
+.diet-small-label,
+.ai-eyebrow,
+.education-eyebrow,
+.wellness-eyebrow,
+.selfcare-eyebrow,
+.hydration-eyebrow,
+.period-preparation-eyebrow,
+.product-stock-eyebrow,
+.appointments-eyebrow,
+.settings-header span,
+.eyebrow {
+  color: var(--hc-primary) !important;
+}
+
+.sidebar,
+.navbar,
+.auth-card,
+.wellness-card,
+.cycle-card,
+.diet-meal-card,
+.ai-chat-card,
+.education-card,
+.settings-card,
+.hydration-card,
+.hydration-history,
+.period-estimate-card,
+.preparation-checklist-card,
+.preparation-detail-card,
+.product-stock-form,
+.product-stock-list,
+.appointment-form,
+.appointment-history,
+.pose-card,
+.selfcare-intro,
+.symptom-recommendation {
+  border-color: var(--hc-border) !important;
+}
+
+.menu-item:hover,
+.menu-item.active,
+.theme-options button.active,
+.education-category-filter button.active,
+.ai-language-switch button.active,
+.phase-button.selected,
+.diet-phase-tab.active,
+.symptom-card.selected,
+.education-bookmark.saved {
+  background: var(--hc-primary-soft) !important;
+  color: var(--hc-primary) !important;
+  border-color: var(--hc-primary) !important;
+}
+
+button[type="submit"],
+.auth-card button,
+.ai-send-button,
+.ai-button,
+.preparation-save-button,
+.hydration-custom-form button,
+.product-stock-form-actions button,
+.appointment-form > button,
+.tracker-form-actions button:not(.cancel-button) {
+  background: var(--hc-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--hc-primary) !important;
+}
+
+/* Shared finishing details */
+::selection {
+  color: #fff;
+  background: var(--hc-primary);
+}
+
+.app-main {
+  background-image:
+    radial-gradient(ellipse at 95% 0%, color-mix(in srgb, var(--hc-primary-soft) 76%, transparent), transparent 430px),
+    radial-gradient(ellipse at 8% 48%, color-mix(in srgb, var(--hc-accent-soft) 42%, transparent), transparent 360px) !important;
+}
+
+.sidebar {
+  padding: 30px 18px !important;
+}
+
+.sidebar-brand {
+  padding: 0 6px;
+  margin-bottom: 38px !important;
+}
+
+.sidebar-brand h2 {
+  color: var(--hc-primary) !important;
+}
+
+.menu-label {
+  color: var(--hc-muted) !important;
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: 0.14em !important;
+}
+
+.menu-item {
+  min-height: 45px;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  box-shadow: inset 3px 0 0 var(--hc-primary), 0 8px 20px color-mix(in srgb, var(--hc-primary) 9%, transparent) !important;
+  transform: translateX(2px);
+}
+
+.app-main > .dashboard,
+.app-main > .ai-page,
+.app-main > .diet-page,
+.app-main > .wellness-page,
+.app-main > .selfcare-page,
+.app-main > .education-page,
+.app-main > .settings-page,
+.app-main > .hydration-page,
+.app-main > .period-preparation-page,
+.app-main > .product-stock-page,
+.app-main > .appointments-page,
+.app-main > .cycle-tracker-page,
+.app-main > .reminders-page {
+  animation: page-arrive 420ms ease both;
+}
+
+@keyframes page-arrive {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-section,
+.cycle-card,
+.wellness-card,
+.insights-card,
+.recent-history,
+.ai-chat-card,
+.settings-card,
+.hydration-card,
+.education-card,
+.appointment-card,
+.product-stock-card,
+.reminder-card,
+.cycle-form,
+.cycle-list,
+.appointment-form,
+.appointment-history,
+.product-stock-form,
+.product-stock-list,
+.reminder-form,
+.reminder-list {
+  border-radius: var(--hc-radius-medium) !important;
+  box-shadow: var(--hc-shadow-soft) !important;
+}
+
+.welcome-section,
+.education-header,
+.hydration-header,
+.period-preparation-header,
+.product-stock-header,
+.appointments-header,
+.reminder-header,
+.wellness-header {
+  border-radius: var(--hc-radius-large) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--hc-primary) !important;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--hc-primary) 14%, transparent) !important;
+}
+
+button {
+  font-weight: 650;
+}
+
+button:hover:not(:disabled) {
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--hc-primary) 13%, transparent) !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.sidebar-tip {
+  border-radius: var(--hc-radius-medium) !important;
+}
+
+/* Older page styles use hard-coded warm colors; normalize their accents here. */
+.dashboard .eyebrow,
+.dashboard .cycle-number strong,
+.dashboard .phase-tag,
+.dashboard .cycle-stats div,
+.dashboard .wellness-card > span,
+.dashboard .wellness-card button,
+.selfcare-page .selfcare-eyebrow,
+.diet-page .diet-eyebrow,
+.diet-page .diet-small-label,
+.ai-page .ai-eyebrow,
+.education-page .education-eyebrow,
+.reminders-page .reminder-eyebrow,
+.cycle-tracker-page .cycle-eyebrow,
+.product-stock-page .product-stock-eyebrow,
+.appointments-page .appointments-eyebrow {
+  color: var(--hc-primary) !important;
+}
+
+.dashboard .ai-banner,
+.dashboard .cycle-progress,
+.dashboard .phase-tag,
+.selfcare-page .pose-card-icon,
+.diet-page .diet-phase-tab.active,
+.reminders-page .reminder-icon,
+.cycle-tracker-page .cycle-phase,
+.product-stock-page .stock-badge,
+.appointments-page .appointment-icon {
+  background-color: var(--hc-primary-soft) !important;
+}
+
+.dashboard .cycle-number {
+  border-color: color-mix(in srgb, var(--hc-primary) 38%, var(--hc-border)) !important;
+}
+
+.dashboard .ai-banner,
+.selfcare-page .selfcare-intro,
+.diet-page .diet-hero,
+.reminders-page .reminder-header,
+.cycle-tracker-page .cycle-header {
+  background: linear-gradient(120deg, var(--hc-primary-soft), var(--hc-surface)) !important;
+}
+
+.dashboard .insights-summary > div,
+.dashboard .insights-card,
+.dashboard .insights-empty,
+.dashboard .symptom-guidance-panel,
+.dashboard .symptom-guidance-card,
+.dashboard .first-cycle-guide,
+.dashboard .first-cycle-content,
+.dashboard .cycle-progress {
+  color: var(--hc-text) !important;
+  background: var(--hc-surface) !important;
+  border-color: var(--hc-border) !important;
+}
+
+.dashboard .insights-empty h3,
+.dashboard .insights-card h3,
+.dashboard .insights-summary strong,
+.dashboard .symptom-guidance-heading h2,
+.dashboard .first-cycle-content h2 {
+  color: var(--hc-text) !important;
+}
+
+.dashboard .insights-empty p,
+.dashboard .insights-card > p,
+.dashboard .insights-subtitle,
+.dashboard .insights-disclaimer,
+.dashboard .symptom-guidance-panel p,
+.dashboard .first-cycle-content p {
+  color: var(--hc-text-soft) !important;
+}
+
+.dashboard .insight-item,
+.dashboard .severity-label,
+.dashboard .history-item strong {
+  color: var(--hc-text-soft) !important;
+  border-color: var(--hc-border) !important;
+}
+
+.dashboard .severity-track,
+.dashboard .history-severity,
+.dashboard .symptom-guidance-icon {
+  background: var(--hc-primary-soft) !important;
+}
+
+.dashboard .insight-item strong,
+.dashboard .severity-label strong,
+.dashboard .insights-summary span,
+.dashboard .insights-empty {
+  color: var(--hc-primary) !important;
+}
+
+.dashboard .severity-fill.mild,
+.dashboard .severity-fill.moderate,
+.dashboard .severity-fill.severe {
+  background: var(--hc-primary) !important;
+}
+
+html[data-theme="dark"] .dashboard .cycle-card,
+html[data-theme="dark"] .dashboard .welcome-section,
+html[data-theme="dark"] .dashboard .ai-banner,
+html[data-theme="dark"] .dashboard .first-cycle-guide {
+  background: linear-gradient(120deg, var(--hc-primary-soft), var(--hc-surface)) !important;
+}
+
+/* Bring every legacy page component into the selected dark theme. */
+html[data-theme="dark"] .app-main :is(
+  .welcome-section, .cycle-form-card, .cycle-form, .cycle-history,
+  .cycle-history-item, .empty-cycle-state, .cycle-card, .first-cycle-guide,
+  .wellness-card, .ai-chat-card, .ai-suggestion-card, .ai-suggestions-section,
+  .ai-safety-note, .diet-hero, .diet-phase-intro, .diet-meal-card,
+  .diet-tips-card, .diet-hydration-card, .diet-phase-tab,
+  .selfcare-intro, .symptom-card, .pose-card, .recommendation-card,
+  .selfcare-empty, .education-card, .education-faq, .education-disclaimer,
+  .education-empty, .settings-card, .settings-note,
+  .hydration-progress-card, .hydration-card, .hydration-history,
+  .hydration-empty, .hydration-entry, .wellness-current-card,
+  .phase-intro-card, .phase-intro-icon, .recommendation-card,
+  .period-estimate-card, .preparation-checklist-card, .preparation-detail-card,
+  .preparation-empty, .product-stock-form, .product-stock-list,
+  .product-stock-card, .product-stock-empty, .appointment-form,
+  .appointment-history, .appointment-card, .appointment-empty,
+  .reminder-form-card, .reminder-form, .reminder-card, .reminder-list,
+  .stat-card, .empty-reminders, .insights-summary > div, .insights-card,
+  .insights-empty, .symptom-guidance-panel, .symptom-guidance-card
+) {
+  color: var(--hc-text) !important;
+  background-color: var(--hc-surface) !important;
+  border-color: var(--hc-border) !important;
+}
+
+/* Nested legacy surfaces that have their own light backgrounds. */
+html[data-theme="dark"] .app-main :is(
+  .product-stock-summary > div, .product-stock-summary .low-stock,
+  .ai-messages, .ai-chat-topbar, .ai-input-area, .ai-input-wrapper,
+  .ai-message-bubble, .ai-powered-label, .ai-message-avatar,
+  .selfcare-tips, .selfcare-personalized-summary, .selfcare-disclaimer,
+  .symptom-count, .recommendation-section, .recommendation-list,
+  .yoga-item, .preparation-detail-card select, .preparation-detail-card textarea,
+  .period-estimate-card, .preparation-progress, .appointments-safety-note,
+  .hydration-tip, .hydration-progress-track, .diet-disclaimer,
+  .product-stock-message, .tracker-form-actions .cancel-button
+) {
+  background-color: var(--hc-surface-soft) !important;
+  border-color: var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+html[data-theme="dark"] .app-main :is(
+  .product-stock-summary span, .product-stock-summary strong,
+  .product-stock-form label, .product-stock-list-heading span,
+  .product-stock-empty, .ai-bot-details span, .ai-powered-label,
+  .ai-message-bubble, .ai-input-footer, .yoga-item *,
+  .selfcare-disclaimer *, .selfcare-tips *, .product-stock-message *,
+  .period-estimate-card *, .appointments-safety-note *,
+  .hydration-tip *, .diet-disclaimer *, .tracker-form-actions .cancel-button
+) {
+  color: var(--hc-text-soft) !important;
+}
+
+html[data-theme="dark"] .app-main :is(.ai-messages, .ai-chat-topbar, .ai-input-area) {
+  border-color: var(--hc-border) !important;
+}
+
+html[data-theme="dark"] .app-main :is(
+  .first-cycle-guide, .diet-hero, .selfcare-intro, .phase-intro-card,
+  .wellness-current-card, .cycle-card, .welcome-section
+) {
+  background-image: linear-gradient(120deg, var(--hc-primary-soft), var(--hc-surface)) !important;
+}
+
+html[data-theme="dark"] .app-main :is(
+  .menu-item, p, small, label, .insight-item, .history-item span,
+  .education-card p, .pose-card p, .recommendation-card p,
+  .hydration-entry, .cycle-history-item, .appointment-card p,
+  .product-stock-card p, .reminder-card p, .diet-meal-card p
+) {
+  color: var(--hc-text-soft) !important;
+}
+
+html[data-theme="dark"] .app-main :is(
+  .symptom-card.selected, .diet-phase-tab.active, .phase-button.selected,
+  .education-category-filter button.active, .history-severity,
+  .severity-track, .reminder-icon, .wellness-icon, .cycle-icon,
+  .education-card-icon, .hydration-progress-icon, .period-estimate-icon
+) {
+  color: var(--hc-primary) !important;
+  background-color: var(--hc-primary-soft) !important;
+}
+
+html[data-theme="dark"] .app-main input,
+html[data-theme="dark"] .app-main textarea,
+html[data-theme="dark"] .app-main select {
+  color-scheme: dark;
+  background-color: var(--hc-surface-soft) !important;
+  color: var(--hc-text) !important;
+  border-color: var(--hc-border) !important;
+}
+
+html[data-theme="dark"] .app-main :is(
+  .diet-info-message, .diet-recipe-preview, .diet-tip, .diet-disclaimer,
+  .diet-phase-art, .diet-hero-icon, .diet-floating-leaf,
+  .pose-instructions, .pose-benefit, .pose-precaution, .selfcare-empty,
+  .wellness-bottom-note, .bottom-note-icon, .preparation-checklist-row,
+  .preparation-empty, .preparation-add-item, .period-preparation-message,
+  .education-empty, .education-faq-item, .hydration-empty,
+  .appointment-empty, .product-stock-empty, .saved-reminder,
+  .saved-reminder-info, .empty-reminders, .ai-message-bubble,
+  .ai-suggestion-card, .ai-safety-note, .ai-chat-header,
+  .symptom-card, .phase-button, .reminder-count, .stat-card,
+  .appointment-notice, .product-stock-stat, .tracker-empty-state
+) {
+  background-color: var(--hc-surface-soft) !important;
+  border-color: var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+html[data-theme="dark"] .app-main :is(
+  .diet-recipe-preview *, .diet-info-message *, .diet-tip *,
+  .pose-instructions *, .pose-benefit *, .pose-precaution *,
+  .preparation-checklist-row *, .saved-reminder-info *,
+  .ai-message-bubble *, .ai-suggestion-card *, .ai-safety-note *,
+  .wellness-bottom-note *, .appointment-notice *
+) {
+  color: var(--hc-text-soft) !important;
+}
+
+html[data-theme="dark"] .app-main :is(
+  .diet-hero-icon, .diet-phase-art, .diet-meal-icon, .diet-water-icon,
+  .selfcare-intro-icon, .bottom-note-icon, .preparation-card-icon,
+  .saved-reminder-icon, .appointment-icon, .product-stock-icon
+) {
+  background-color: var(--hc-primary-soft) !important;
+}
+
+html[data-theme="dark"] .app-main :is(
+  .diet-recipe-preview, .diet-meal-detail, .diet-hero-note,
+  .diet-info-message, .diet-phase-art, .pose-instructions,
+  .preparation-checklist-row, .preparation-empty, .empty-cycle-state,
+  .saved-reminder, .history-item, .appointment-notice,
+  .wellness-bottom-note, .wellness-note, .selfcare-empty,
+  .education-empty, .hydration-empty, .product-stock-empty,
+  .appointment-empty, .ai-message-bubble.assistant-bubble,
+  .ai-chat-header, .ai-suggestion-icon, .diet-meal-icon,
+  .symptom-card-icon, .product-stock-stat
+) {
+  background: var(--hc-surface-soft) !important;
+  color: var(--hc-text) !important;
+  border-color: var(--hc-border) !important;
+}
+
+html[data-theme="dark"] .app-main :is(
+  .diet-recipe-preview, .diet-recipe-preview *, .diet-meal-detail *,
+  .diet-info-message *, .preparation-checklist-row *, .saved-reminder *,
+  .wellness-bottom-note *, .appointment-notice *, .ai-message-bubble.assistant-bubble *,
+  .period-estimate-card *, .product-stock-empty *, .hydration-empty *
+) {
+  color: var(--hc-text-soft) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    box-shadow: 12px 0 38px rgba(24, 54, 66, 0.18) !important;
+  }
+
+  .app-main {
+    background-image: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard,
+  .ai-page,
+  .diet-page,
+  .wellness-page,
+  .selfcare-page,
+  .education-page,
+  .settings-page,
+  .hydration-page,
+  .period-preparation-page,
+  .product-stock-page,
+  .appointments-page,
+  .reminders-page,
+  .cycle-page,
+  .cycle-tracker-page {
+    padding: 18px !important;
+  }
+
+  .welcome-section,
+  .education-header,
+  .hydration-header,
+  .period-preparation-header,
+  .product-stock-header,
+  .appointments-header,
+  .reminder-header,
+  .wellness-header {
+    padding: 18px !important;
+  }
+}
+
+/* Refined light palette: airy blue canvas, layered cards, and crisp controls. */
+html[data-theme="light"] {
+  --hc-background: #f3f7fd;
+  --hc-surface: #ffffff;
+  --hc-surface-soft: #f1f6fd;
+  --hc-border: #d7e4f4;
+  --hc-text: #20344f;
+  --hc-text-soft: #60748e;
+  --hc-muted: #879bb5;
+  --hc-primary: #3978c5;
+  --hc-primary-soft: #e5f0ff;
+  --hc-accent: #638bd1;
+  --hc-accent-soft: #edf4ff;
+}
+
+html[data-theme="light"] .app-main {
+  background-image:
+    radial-gradient(ellipse at 92% 2%, rgba(146, 185, 239, 0.18), transparent 430px),
+    radial-gradient(ellipse at 8% 52%, rgba(199, 219, 248, 0.22), transparent 390px) !important;
+}
+
+html[data-theme="light"] .sidebar,
+html[data-theme="light"] .navbar {
+  box-shadow: 0 10px 34px rgba(52, 91, 145, 0.07) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .welcome-section, .cycle-form-card, .cycle-history, .cycle-form,
+  .cycle-history-item, .wellness-card, .ai-chat-card, .ai-suggestion-card,
+  .ai-suggestions-section, .ai-safety-note, .diet-hero, .diet-phase-intro,
+  .diet-meal-card, .diet-tips-card, .diet-hydration-card, .selfcare-intro,
+  .symptom-card, .pose-card, .recommendation-card, .education-card,
+  .education-faq, .education-disclaimer, .settings-card, .hydration-progress-card,
+  .hydration-card, .hydration-history, .period-estimate-card,
+  .preparation-checklist-card, .preparation-detail-card, .product-stock-form,
+  .product-stock-list, .product-stock-card, .appointment-form,
+  .appointment-history, .appointment-card, .reminder-form-card, .reminder-card,
+  .reminder-list, .stat-card, .insights-card, .recent-history,
+  .symptom-guidance-panel, .symptom-guidance-card
+) {
+  border-color: color-mix(in srgb, var(--hc-primary) 14%, var(--hc-border)) !important;
+  box-shadow: 0 12px 30px rgba(44, 82, 135, 0.075) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .welcome-section, .diet-hero, .selfcare-header, .wellness-header,
+  .period-preparation-header, .product-stock-header, .appointments-header,
+  .reminders-header, .cycle-tracker-page .cycle-header
+) {
+  background: linear-gradient(125deg, #e4efff 0%, #f7faff 58%, #eaf3ff 100%) !important;
+  border: 1px solid #d4e3f7 !important;
+  box-shadow: 0 16px 36px rgba(55, 105, 174, 0.09) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .cycle-history-item, .product-stock-card, .appointment-card,
+  .reminder-card, .yoga-item, .preparation-checklist-row,
+  .diet-tip, .diet-recipe-preview, .hydration-entry, .saved-reminder-info,
+  .symptom-guidance-card
+) {
+  background: linear-gradient(135deg, #ffffff, #f5f9ff) !important;
+  border-color: #e0eaf7 !important;
+}
+
+html[data-theme="light"] .app-main :is(.wellness-card, .education-card, .ai-suggestion-card, .pose-card, .product-stock-card, .appointment-card, .reminder-card):hover {
+  transform: translateY(-3px);
+  border-color: #b8d0f0 !important;
+  box-shadow: 0 18px 36px rgba(49, 91, 150, 0.13) !important;
+}
+
+html[data-theme="light"] .app-main :is(input, textarea, select) {
+  background: #fbfdff !important;
+  border-color: #d6e2f0 !important;
+  box-shadow: inset 0 1px 2px rgba(44, 82, 135, 0.035);
+}
+
+html[data-theme="light"] .app-main :is(input, textarea, select):focus {
+  background: #ffffff !important;
+  border-color: #78a5df !important;
+  box-shadow: 0 0 0 4px rgba(78, 135, 207, 0.13) !important;
+}
+
+html[data-theme="light"] .menu-item.active {
+  background: linear-gradient(110deg, #e4efff, #f1f6ff) !important;
+  border-color: #c9dcf5 !important;
+  box-shadow: inset 3px 0 #4b84cc, 0 6px 16px rgba(55, 105, 174, 0.08) !important;
+}
+
+html[data-theme="light"] .app-main :is(button[type="submit"], .ai-send-button, .ai-button, .preparation-save-button, .hydration-custom-form button, .product-stock-form-actions button, .appointment-form > button, .tracker-form-actions button:not(.cancel-button)) {
+  background: linear-gradient(135deg, #4d8bd7, #3978c5) !important;
+  border-color: #3978c5 !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 18px rgba(57, 120, 197, 0.22) !important;
+}
+
+html[data-theme="light"] .app-main :is(button[type="submit"], .ai-send-button, .ai-button, .preparation-save-button, .hydration-custom-form button, .product-stock-form-actions button, .appointment-form > button, .tracker-form-actions button:not(.cancel-button)):hover {
+  background: linear-gradient(135deg, #3978c5, #2f68ae) !important;
+  box-shadow: 0 11px 22px rgba(57, 120, 197, 0.27) !important;
+  transform: translateY(-1px);
+}
+
+/* Page level light theme polish */
+html[data-theme="light"] .app-main > :is(
+  .dashboard, .ai-page, .diet-page, .wellness-page, .selfcare-page,
+  .education-page, .settings-page, .hydration-page,
+  .period-preparation-page, .product-stock-page, .appointments-page,
+  .cycle-tracker-page, .reminders-page
+) {
+  padding-top: 36px;
+  padding-bottom: 48px;
+}
+
+html[data-theme="light"] .app-layout .app-main :is(
+  .welcome-section, .ai-header, .diet-hero, .selfcare-header,
+  .wellness-header, .education-header, .hydration-header,
+  .period-preparation-header, .product-stock-header, .appointments-header,
+  .reminder-header, .tracker-heading
+) {
+  margin-bottom: 26px;
+}
+
+html[data-theme="light"] .app-main :is(
+  .welcome-section, .diet-hero, .selfcare-header, .wellness-header,
+  .education-header, .hydration-header, .period-preparation-header,
+  .product-stock-header, .appointments-header, .reminder-header
+) {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .welcome-section, .diet-hero, .selfcare-header, .wellness-header,
+  .education-header, .hydration-header, .period-preparation-header,
+  .product-stock-header, .appointments-header, .reminder-header
+)::after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  right: -90px;
+  top: -130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+html[data-theme="light"] .app-main :is(
+  .tracker-heading h1, .ai-header h1, .diet-hero h1, .selfcare-header h1,
+  .wellness-header h1, .education-header h1, .hydration-header h1,
+  .period-preparation-header h1, .product-stock-header h1,
+  .appointments-header h1, .reminder-header h1
+) {
+  color: #1e3c62 !important;
+  letter-spacing: -0.045em;
+}
+
+html[data-theme="light"] .app-main :is(
+  .tracker-heading p, .ai-header p, .diet-hero p, .selfcare-header p,
+  .wellness-header p, .education-header p, .hydration-header p,
+  .period-preparation-header p, .product-stock-header p,
+  .appointments-header p, .reminder-header p
+) {
+  color: #617894 !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .cycle-form-card, .cycle-history, .product-stock-form, .product-stock-list,
+  .appointment-form, .appointment-history, .preparation-checklist-card,
+  .preparation-detail-card, .hydration-card, .hydration-history,
+  .settings-card, .education-faq, .education-disclaimer, .ai-suggestions-section,
+  .ai-safety-note, .selfcare-intro, .symptom-recommendation,
+  .wellness-current-card, .phase-intro-card, .period-estimate-card,
+  .reminder-form-card, .reminder-list, .insights-card, .recent-history
+) {
+  border-radius: 22px !important;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%) !important;
+  border: 1px solid #dce8f7 !important;
+  box-shadow: 0 14px 34px rgba(41, 78, 128, 0.075), 0 2px 6px rgba(41, 78, 128, 0.035) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .tracker-section-title, .education-faq-heading, .hydration-section-heading,
+  .appointment-history-heading, .saved-reminders-heading,
+  .product-stock-list-heading, .preparation-card-heading,
+  .wellness-section-heading, .diet-section-heading, .selfcare-section-heading
+) h2 {
+  color: #294d77 !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .cycle-history-item, .product-stock-card, .appointment-card,
+  .reminder-card, .education-card, .diet-meal-card, .pose-card,
+  .recommendation-card, .wellness-card, .ai-suggestion-card,
+  .symptom-card, .stat-card, .yoga-item, .preparation-checklist-row
+) {
+  border-radius: 18px !important;
+  border: 1px solid #e0eaf7 !important;
+  box-shadow: 0 6px 18px rgba(41, 78, 128, 0.055) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .education-card-icon, .diet-meal-icon, .pose-card-icon,
+  .recommendation-icon, .stat-icon, .symptom-card-icon,
+  .phase-intro-icon, .preparation-card-icon, .product-stock-icon
+) {
+  border-radius: 14px !important;
+  background: linear-gradient(145deg, #e3efff, #f1f6ff) !important;
+  color: #3978c5 !important;
+  box-shadow: inset 0 0 0 1px rgba(57, 120, 197, 0.08);
+}
+
+html[data-theme="light"] .app-main :is(.eyebrow, .diet-small-label, .ai-eyebrow, .selfcare-eyebrow, .wellness-eyebrow, .education-eyebrow, .hydration-eyebrow, .period-preparation-eyebrow, .product-stock-eyebrow, .appointments-eyebrow) {
+  color: #4c82c2 !important;
+  letter-spacing: 0.13em;
+}
+
+html[data-theme="light"] .app-main :is(.phase-button, .diet-phase-tab, .education-category-filter button, .selfcare-symptom-filter button, .reminder-filters button) {
+  border: 1px solid #d7e5f6 !important;
+  border-radius: 13px !important;
+  background: #f7faff !important;
+  color: #5f7590 !important;
+}
+
+html[data-theme="light"] .app-main :is(.phase-button.selected, .diet-phase-tab.active, .education-category-filter button.active, .selfcare-symptom-filter button.active, .reminder-filters button.active) {
+  background: linear-gradient(135deg, #e1eeff, #edf5ff) !important;
+  border-color: #a9c8ef !important;
+  color: #2e69ad !important;
+  box-shadow: 0 5px 14px rgba(57, 120, 197, 0.1) !important;
+}
+
+html[data-theme="light"] .app-main :is(.empty-cycle-state, .product-stock-empty, .appointment-empty, .education-empty, .hydration-empty, .selfcare-empty, .empty-reminders, .insights-empty) {
+  border: 1px dashed #cbdcf1 !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg, #f4f8fe, #fbfdff) !important;
+  color: #617894 !important;
+}
+
+html[data-theme="light"] .app-main :is(.ai-messages, .ai-input-area, .ai-chat-topbar) {
+  background: #f7faff !important;
+}
+
+html[data-theme="light"] .app-main .ai-chat-card {
+  overflow: hidden;
+  border-radius: 24px !important;
+  box-shadow: 0 18px 42px rgba(41, 78, 128, 0.11) !important;
+}
+
+html[data-theme="light"] .app-main :is(.ai-message-bubble.assistant-bubble, .ai-safety-note, .diet-info-message, .appointment-notice, .wellness-bottom-note) {
+  background: #edf4fd !important;
+  border-color: #d7e5f6 !important;
+  color: #4e6684 !important;
+}
+
+html[data-theme="light"] .app-main :is(.cycle-tracker-page, .product-stock-page, .appointments-page, .period-preparation-page, .hydration-page, .reminders-page) {
+  color: var(--hc-text) !important;
+}
+
+/* Cohesive light surfaces across legacy pages and auth routes. */
+html[data-theme="light"] {
+  --hc-background: #f4f7fc;
+  --hc-surface: #ffffff;
+  --hc-surface-soft: #eff4fb;
+  --hc-border: #dce5f1;
+  --hc-text: #243750;
+  --hc-text-soft: #61738b;
+  --hc-muted: #8798ad;
+  --hc-primary: #3978c5;
+  --hc-primary-soft: #e7f0fc;
+  --hc-accent: #6289c5;
+  --hc-accent-soft: #f0f5fc;
+  --hc-shadow: 0 18px 42px rgba(43, 76, 120, 0.12);
+  --hc-shadow-soft: 0 9px 26px rgba(43, 76, 120, 0.07);
+  --hc-button-primary: #3978c5;
+  --hc-button-primary-hover: #2f68ad;
+}
+
+html[data-theme="light"] body,
+html[data-theme="light"] #root,
+html[data-theme="light"] .app-layout {
+  background-color: var(--hc-background) !important;
+  color: var(--hc-text) !important;
+}
+
+html[data-theme="light"] .app-main {
+  background-color: var(--hc-background) !important;
+  background-image:
+    radial-gradient(ellipse at 92% 0%, rgba(147, 184, 232, 0.16), transparent 430px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.26), transparent 420px) !important;
+}
+
+html[data-theme="light"] .app-main > :is(
+  .dashboard, .ai-page, .diet-page, .wellness-page, .selfcare-page,
+  .education-page, .settings-page, .hydration-page,
+  .period-preparation-page, .product-stock-page, .appointments-page,
+  .cycle-tracker-page, .reminders-page
+) {
+  padding: 34px clamp(18px, 3vw, 38px) 48px;
+}
+
+html[data-theme="light"] .app-layout .app-main :is(
+  .welcome-section, .ai-header, .diet-hero, .selfcare-header,
+  .wellness-header, .education-header, .settings-header, .hydration-header,
+  .period-preparation-header, .product-stock-header, .appointments-header,
+  .reminders-header, .reminder-header, .tracker-heading
+) {
+  padding: 25px 28px;
+  margin-bottom: 26px;
+  border: 1px solid #d8e4f3 !important;
+  border-radius: 23px !important;
+  background: linear-gradient(122deg, #e8f1fd 0%, #fbfdff 56%, #f0f5fc 100%) !important;
+  box-shadow: 0 13px 30px rgba(49, 86, 137, 0.075) !important;
+}
+
+html[data-theme="light"] .app-layout .app-main :is(
+  .welcome-section, .ai-header, .diet-hero, .selfcare-header,
+  .wellness-header, .education-header, .settings-header, .hydration-header,
+  .period-preparation-header, .product-stock-header, .appointments-header,
+  .reminders-header, .reminder-header, .tracker-heading
+) h1 {
+  margin-top: 8px;
+  margin-bottom: 9px;
+  color: #233f63 !important;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+html[data-theme="light"] .app-main :is(
+  .welcome-section, .ai-header, .diet-hero, .selfcare-header,
+  .wellness-header, .education-header, .settings-header, .hydration-header,
+  .period-preparation-header, .product-stock-header, .appointments-header,
+  .reminders-header, .reminder-header, .tracker-heading
+) p {
+  max-width: 700px;
+  color: #61758f !important;
+  line-height: 1.7;
+}
+
+html[data-theme="light"] .app-main :is(
+  .cycle-form-card, .cycle-history, .cycle-form, .cycle-history-item,
+  .wellness-current-card, .wellness-card, .ai-chat-card, .ai-suggestion-card,
+  .ai-suggestions-section, .ai-safety-note, .diet-phase-intro, .diet-meal-card,
+  .diet-tips-card, .diet-hydration-card, .selfcare-intro, .symptom-card,
+  .symptom-recommendation, .pose-card, .recommendation-card, .education-card,
+  .education-faq, .education-disclaimer, .settings-card, .hydration-progress-card,
+  .hydration-card, .hydration-history, .period-estimate-card,
+  .preparation-checklist-card, .preparation-detail-card, .product-stock-form,
+  .product-stock-list, .product-stock-card, .appointment-form,
+  .appointment-history, .appointment-card, .reminder-form-card, .reminder-card,
+  .reminder-form, .reminder-list, .saved-reminder, .stat-card, .insights-card,
+  .recent-history, .symptom-guidance-panel, .symptom-guidance-card,
+  .first-cycle-guide, .first-cycle-content
+) {
+  border-color: #dce6f2 !important;
+  box-shadow: 0 10px 26px rgba(43, 76, 120, 0.065) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .cycle-form-card, .cycle-history, .product-stock-form, .product-stock-list,
+  .appointment-form, .appointment-history, .preparation-checklist-card,
+  .preparation-detail-card, .hydration-card, .hydration-history, .settings-card,
+  .education-faq, .education-disclaimer, .ai-suggestions-section, .ai-safety-note,
+  .selfcare-intro, .symptom-recommendation, .wellness-current-card,
+  .phase-intro-card, .period-estimate-card, .reminder-form-card, .reminder-list,
+  .insights-card, .recent-history
+) {
+  background: linear-gradient(145deg, #ffffff 0%, #f9fbfe 100%) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .tracker-section-title h2, .section-heading h2, .wellness-section-heading h2,
+  .education-faq-heading h2, .hydration-section-heading h2,
+  .appointment-history-heading h2, .saved-reminders-heading h2,
+  .product-stock-list-heading h2, .preparation-card-heading h2,
+  .wellness-card h3, .education-card h2, .recommendation-card h3,
+  .diet-section-heading h2, .selfcare-section-heading h2
+) {
+  color: #2d4d74 !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .empty-cycle-state, .product-stock-empty, .appointment-empty,
+  .education-empty, .hydration-empty, .selfcare-empty, .empty-reminders,
+  .insights-empty, .tracker-empty-state, .preparation-empty
+) {
+  padding: 30px 22px;
+  border: 1px dashed #c9d9ed !important;
+  border-radius: 17px !important;
+  background: linear-gradient(145deg, #f3f7fd, #fbfdff) !important;
+  color: var(--hc-text-soft) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .phase-button, .diet-phase-tab, .education-category-filter button,
+  .selfcare-symptom-filter button, .reminder-filters button
+) {
+  border: 1px solid #d8e4f2 !important;
+  border-radius: 12px !important;
+  background: #f9fbfe !important;
+  color: #5d7088 !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  .phase-button.selected, .diet-phase-tab.active,
+  .education-category-filter button.active, .selfcare-symptom-filter button.active,
+  .reminder-filters button.active
+) {
+  border-color: #a9c5e8 !important;
+  background: linear-gradient(135deg, #e5effc, #f1f6fd) !important;
+  color: #2f68ad !important;
+  box-shadow: 0 5px 13px rgba(57, 120, 197, 0.09) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  textarea, select
+) {
+  color-scheme: light;
+  border-color: #d5e0ed !important;
+  border-radius: 11px !important;
+  background: #fbfdff !important;
+  color: #263a54 !important;
+  box-shadow: inset 0 1px 2px rgba(43, 76, 120, 0.035);
+}
+
+html[data-theme="light"] .app-main :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  textarea, select
+):focus {
+  border-color: #79a4d8 !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(76, 132, 199, 0.13) !important;
+}
+
+html[data-theme="light"] .app-main label,
+html[data-theme="light"] .auth-card label {
+  color: #405873 !important;
+  font-weight: 650;
+}
+
+html[data-theme="light"] .app-main :is(
+  button[type="submit"], .create-reminder-button,
+  .product-stock-form-actions button:not(.product-stock-cancel),
+  .tracker-form-actions button:not(.cancel-button), .wellness-primary-link,
+  .auth-card button
+) {
+  border-color: #3978c5 !important;
+  background: linear-gradient(135deg, #4b89d2, #3978c5) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 18px rgba(57, 120, 197, 0.2) !important;
+}
+
+html[data-theme="light"] .app-main :is(
+  button[type="submit"], .create-reminder-button,
+  .product-stock-form-actions button:not(.product-stock-cancel),
+  .tracker-form-actions button:not(.cancel-button), .wellness-primary-link
+):hover,
+html[data-theme="light"] .auth-card button:hover:not(:disabled) {
+  border-color: #2f68ad !important;
+  background: linear-gradient(135deg, #3978c5, #2f68ad) !important;
+  box-shadow: 0 11px 22px rgba(57, 120, 197, 0.25) !important;
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] .app-main button:focus-visible,
+html[data-theme="light"] .auth-card button:focus-visible,
+html[data-theme="light"] .auth-footer a:focus-visible {
+  outline: 3px solid rgba(57, 120, 197, 0.3);
+  outline-offset: 3px;
+}
+
+html[data-theme="light"] .auth-page {
+  padding: 32px 20px;
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(148, 185, 231, 0.26), transparent 360px),
+    radial-gradient(ellipse at 86% 88%, rgba(198, 216, 240, 0.36), transparent 420px),
+    linear-gradient(135deg, #f1f6fd 0%, #f8fafd 52%, #edf3fb 100%) !important;
+}
+
+html[data-theme="light"] .auth-card {
+  max-width: 450px;
+  padding: 42px;
+  border: 1px solid rgba(202, 218, 239, 0.9) !important;
+  border-radius: 24px !important;
+  background: linear-gradient(145deg, #ffffff 0%, #fbfdff 100%) !important;
+  box-shadow: 0 22px 54px rgba(40, 74, 120, 0.14), 0 3px 10px rgba(40, 74, 120, 0.04) !important;
+}
+
+html[data-theme="light"] .auth-card h1 {
+  margin-bottom: 9px;
+  color: #24466f !important;
+  font-size: 30px;
+  line-height: 1.25;
+}
+
+html[data-theme="light"] .auth-card > p,
+html[data-theme="light"] .auth-card .auth-footer {
+  color: #647991 !important;
+  line-height: 1.65;
+}
+
+html[data-theme="light"] .auth-card form {
+  gap: 10px;
+}
+
+html[data-theme="light"] .auth-card input {
+  min-height: 48px;
+  padding: 12px 14px;
+  border-color: #d5e0ed !important;
+  border-radius: 11px !important;
+  background: #fafdff !important;
+}
+
+html[data-theme="light"] .auth-card input:focus {
+  border-color: #79a4d8 !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(76, 132, 199, 0.13) !important;
+}
+
+html[data-theme="light"] .auth-card button {
+  min-height: 49px;
+  margin-top: 12px;
+  border-radius: 11px !important;
+}
+
+html[data-theme="light"] .auth-footer a {
+  color: #2f68ad !important;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 650px) {
+  html[data-theme="light"] .app-layout .app-main :is(
+    .welcome-section, .ai-header, .diet-hero, .selfcare-header,
+    .wellness-header, .education-header, .settings-header, .hydration-header,
+    .period-preparation-header, .product-stock-header, .appointments-header,
+    .reminders-header, .reminder-header, .tracker-heading
+  ) {
+    padding: 20px !important;
+    border-radius: 19px !important;
+  }
+
+  html[data-theme="light"] .app-layout .app-main :is(
+    .welcome-section, .ai-header, .diet-hero, .selfcare-header,
+    .wellness-header, .education-header, .settings-header, .hydration-header,
+    .period-preparation-header, .product-stock-header, .appointments-header,
+    .reminders-header, .reminder-header, .tracker-heading
+  ) h1 {
+    font-size: 26px;
+  }
+
+  html[data-theme="light"] .auth-page {
+    align-items: center;
+    padding: 22px 16px;
+  }
+
+  html[data-theme="light"] .auth-card {
+    padding: 30px 24px;
+  }
+}

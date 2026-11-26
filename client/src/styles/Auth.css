@@ -1,77 +1,80 @@
-
 .auth-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: linear-gradient(135deg, #fff8f3, #f8e5df);
-  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at 18% 18%, var(--hc-primary-soft), transparent 280px),
+    radial-gradient(circle at 82% 78%, var(--hc-accent-soft), transparent 320px),
+    var(--hc-background);
 }
 
 .auth-card {
   width: 100%;
   max-width: 430px;
   padding: 38px;
-  background: #ffffff;
-  border: 1px solid #f1ddd5;
-  border-radius: 22px;
-  box-shadow: 0 15px 45px rgba(112, 72, 62, 0.1);
+  background: var(--hc-surface);
+  border: 1px solid var(--hc-border);
+  border-radius: var(--hc-radius-large);
+  box-shadow: var(--hc-shadow);
 }
 
 .auth-card h1 {
   margin-bottom: 10px;
-  color: #754b50;
-  font-size: 28px;
+  color: var(--hc-text);
+  font-size: clamp(26px, 5vw, 32px);
 }
 
 .auth-card > p {
-  color: #927c7b;
   margin-bottom: 28px;
+  color: var(--hc-text-soft);
 }
 
 .auth-card form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 13px;
 }
 
 .auth-card label {
-  color: #654c4e;
+  color: var(--hc-text);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .auth-card input {
   width: 100%;
   padding: 13px 14px;
-  border: 1px solid #ead8d2;
-  border-radius: 10px;
+  border: 1px solid var(--hc-border);
+  border-radius: var(--hc-radius-small);
   outline: none;
+  background: var(--hc-surface);
+  color: var(--hc-text);
   font-size: 14px;
-  background: #fffcfa;
 }
 
 .auth-card input:focus {
-  border-color: #c58e91;
-  box-shadow: 0 0 0 3px rgba(197, 142, 145, 0.12);
+  border-color: var(--hc-primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--hc-primary) 13%, transparent);
 }
 
 .auth-card button {
   margin-top: 12px;
   padding: 14px;
-  border: none;
-  border-radius: 10px;
-  background: #ad737d;
-  color: white;
+  border: 1px solid var(--hc-primary);
+  border-radius: var(--hc-radius-small);
+  background: var(--hc-primary);
+  color: #ffffff;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 800;
   cursor: pointer;
-  transition: background 0.2s ease;
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--hc-primary) 17%, transparent);
 }
 
 .auth-card button:hover {
-  background: #925c67;
+  background: color-mix(in srgb, var(--hc-primary) 88%, #000);
+  transform: translateY(-1px);
 }
 
 .auth-card button:disabled {
@@ -82,22 +85,27 @@
 .auth-error {
   color: #c03950;
   font-size: 13px;
-  margin: 4px 0;
 }
 
 .auth-card .auth-footer {
   margin: 22px 0 0;
   text-align: center;
   font-size: 14px;
+  color: var(--hc-text-soft);
 }
 
 .auth-footer a {
-  color: #a45e70;
-  font-weight: 600;
+  color: var(--hc-primary);
+  font-weight: 800;
   text-decoration: none;
 }
 
 @media (max-width: 480px) {
+  .auth-page {
+    align-items: flex-start;
+    padding-top: 12vh;
+  }
+
   .auth-card {
     padding: 26px 20px;
   }

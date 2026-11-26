@@ -1,43 +1,45 @@
-
 import {
   Bell,
   Menu,
-  Search,
   ChevronDown
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ setOpen }) => {
+  const navigate = useNavigate();
+
   return (
     <header className="navbar">
       <button
+        type="button"
         className="mobile-menu"
         onClick={() => setOpen(true)}
       >
         <Menu size={23} />
       </button>
 
-      <div className="search-box">
-        <Search size={18} />
-        <input
-          type="text"
-          placeholder="Search anything..."
-        />
-      </div>
-
       <div className="navbar-right">
-        <button className="notification-btn">
+        <button
+          type="button"
+          className="notification-btn"
+          onClick={() => navigate("/reminders")}
+          aria-label="Open reminders"
+        >
           <Bell size={20} />
-          <span className="notification-dot"></span>
         </button>
 
-        <div className="profile">
+        <button
+          type="button"
+          className="profile"
+          onClick={() => navigate("/settings")}
+        >
           <div className="profile-avatar">H</div>
           <div className="profile-info">
-            <strong>Himanshi</strong>
-            <span>My Profile</span>
+            <strong>HerCycle</strong>
+            <span>Settings</span>
           </div>
           <ChevronDown size={17} />
-        </div>
+        </button>
       </div>
     </header>
   );

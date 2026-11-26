@@ -1,15 +1,13 @@
-import PushSubscription from "../models/PushSubscription.js";
 
-import {
-  getVapidPublicKey
-} from "../services/pushNotification.js";
+import PushSubscription from "../models/PushSubscription.js";
+import { getVapidPublicKey } from "../services/pushNotification.js";
 
 // Get public VAPID key
 export const getPublicKey = (req, res) => {
   const publicKey = getVapidPublicKey();
 
   if (!publicKey) {
-    return res.status(500).json({
+    return res.status(503).json({
       success: false,
       message: "Push notifications are not configured."
     });
@@ -27,9 +25,10 @@ export const subscribeToPush = async (req, res) => {
     const subscription = req.body;
 
     if (
-      !subscription?.endpoint ||
-      !subscription?.keys?.p256dh ||
-      !subscription?.keys?.auth
+      typeof subscription?.endpoint !== "string" ||
+      !subscription.endpoint.startsWith("https://") ||
+      typeof subscription?.keys?.p256dh !== "string" ||
+      typeof subscription?.keys?.auth !== "string"
     ) {
       return res.status(400).json({
         success: false,
@@ -52,7 +51,8 @@ export const subscribeToPush = async (req, res) => {
       {
         upsert: true,
         new: true,
-        runValidators: true
+        runValidators: true,
+        setDefaultsOnInsert: true
       }
     );
 
@@ -75,21 +75,23 @@ export const unsubscribeFromPush = async (req, res) => {
   try {
     const { endpoint } = req.body;
 
-    if (!endpoint) {
+    if (typeof endpoint !== "string" || !endpoint.startsWith("https://")) {
       return res.status(400).json({
         success: false,
-        message: "Subscription endpoint is required."
+        message: "Valid subscription endpoint is required."
       });
     }
 
-    await PushSubscription.deleteOne({
+    const result = await PushSubscription.deleteOne({
       user: req.user._id,
       endpoint
     });
 
     return res.status(200).json({
       success: true,
-      message: "Push subscription removed."
+      message: result.deletedCount
+        ? "Push subscription removed."
+        : "Subscription was not found."
     });
   } catch (error) {
     console.error("Push unsubscribe error:", error.message);

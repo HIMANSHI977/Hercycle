@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import {
   Apple,
@@ -121,6 +120,39 @@ const mealSections = [
     description: "A balanced evening meal"
   }
 ];
+
+const simpleRecipes = {
+  "Palak dal with roti": {
+    time: "25–30 minutes",
+    ingredients: ["1 cup moong or toor dal", "1 cup chopped spinach", "Tomato, onion, turmeric and lemon"],
+    method: "Cook the dal until soft, prepare a light tomato-onion tempering, add spinach and serve with roti."
+  },
+  "Chana rice with cucumber salad": {
+    time: "30 minutes",
+    ingredients: ["1 cup chickpeas", "Cooked rice", "Cucumber, onion and lemon"],
+    method: "Prepare a simple chickpea masala and serve with warm rice and cucumber salad."
+  },
+  "Vegetable poha with peanuts": {
+    time: "15–20 minutes",
+    ingredients: ["Flattened rice", "Peanuts", "Onion, peas and lemon"],
+    method: "Lightly rinse poha, soften peanuts and vegetables in a pan, add poha and finish with lemon."
+  },
+  "Moong dal khichdi with curd": {
+    time: "30 minutes",
+    ingredients: ["Moong dal", "Rice", "Vegetables and mild spices"],
+    method: "Pressure-cook rice and dal with vegetables until soft. Serve warm with plain curd."
+  },
+  "Vegetable oats": {
+    time: "10–15 minutes",
+    ingredients: ["Oats", "Mixed vegetables", "Carom or cumin seeds"],
+    method: "Cook oats with vegetables and water, season lightly and serve warm."
+  },
+  "Vegetable dalia": {
+    time: "20–25 minutes",
+    ingredients: ["Cracked wheat", "Mixed vegetables", "Dal and mild spices"],
+    method: "Cook dalia and vegetables together in a pressure cooker or pot until soft."
+  }
+};
 
 const Diet = () => {
   const [selectedPhase, setSelectedPhase] = useState("menstrual");
@@ -277,9 +309,22 @@ const Diet = () => {
                     </div>
 
                     <ul>
-                      {currentMealPlan.meals[section.key].map((meal) => (
-                        <li key={meal}>{meal}</li>
-                      ))}
+                      {currentMealPlan.meals[section.key].map((meal) => {
+                        const recipe = simpleRecipes[meal];
+
+                        return (
+                          <li key={meal}>
+                            <span>{meal}</span>
+                            {recipe && (
+                              <div className="diet-recipe-preview">
+                                <strong>{recipe.time}</strong>
+                                <p><b>Ingredients:</b> {recipe.ingredients.join(" · ")}</p>
+                                <p><b>Method:</b> {recipe.method}</p>
+                              </div>
+                            )}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </article>
                 );

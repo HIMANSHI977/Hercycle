@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import {
   Bot,
@@ -50,6 +49,7 @@ const AIAssistant = () => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [language, setLanguage] = useState("en");
 
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
@@ -94,7 +94,8 @@ const AIAssistant = () => {
 
       const response = await API.post("/ai/chat", {
         message,
-        history
+        history,
+        language
       });
 
       const reply = response.data?.reply;
@@ -159,15 +160,36 @@ const AIAssistant = () => {
           </p>
         </div>
 
-        <button
-          type="button"
-          className="ai-clear-button"
-          onClick={clearChat}
-          disabled={loading}
-        >
-          <RefreshCw size={16} />
-          New Chat
-        </button>
+        <div className="ai-header-actions">
+          <div className="ai-language-switch" aria-label="Assistant language">
+            <button
+              type="button"
+              className={language === "en" ? "active" : ""}
+              onClick={() => setLanguage("en")}
+              disabled={loading}
+            >
+              English
+            </button>
+            <button
+              type="button"
+              className={language === "hi" ? "active" : ""}
+              onClick={() => setLanguage("hi")}
+              disabled={loading}
+            >
+              हिन्दी
+            </button>
+          </div>
+
+          <button
+            type="button"
+            className="ai-clear-button"
+            onClick={clearChat}
+            disabled={loading}
+          >
+            <RefreshCw size={16} />
+            New Chat
+          </button>
+        </div>
       </header>
 
       <section className="ai-chat-card">

@@ -1,10 +1,12 @@
+
 import * as webpush from "web-push";
 import PushSubscription from "../models/PushSubscription.js";
 
-const vapidConfigured =
+const vapidConfigured = Boolean(
   process.env.VAPID_PUBLIC_KEY &&
   process.env.VAPID_PRIVATE_KEY &&
-  process.env.VAPID_SUBJECT;
+  process.env.VAPID_SUBJECT
+);
 
 if (vapidConfigured) {
   webpush.setVapidDetails(
@@ -21,9 +23,16 @@ export const getVapidPublicKey = () => {
 };
 
 export const sendPushNotification = async (userId, payload) => {
+  const result = {
+    attempted: 0,
+    sent: 0,
+    failed: 0,
+    removed: 0
+  };
+
   if (!vapidConfigured) {
-    console.warn("Push notification skipped: VAPID not configured.");
-    return;
+    console.warn("Push skipped: VAPID configuration missing.");
+    return result;
   }
 
   try {
@@ -31,7 +40,9 @@ export const sendPushNotification = async (userId, payload) => {
       user: userId
     });
 
-    await Promise.all(
+    result.attempted = subscriptions.length;
+
+    const deliveries = await Promise.allSettled(
       subscriptions.map(async (subscription) => {
         try {
           await webpush.sendNotification(
@@ -41,19 +52,30 @@ export const sendPushNotification = async (userId, payload) => {
             },
             JSON.stringify(payload)
           );
-        } catch (error) {
-          console.error("Push delivery error:", error.statusCode);
 
-          // Remove subscriptions that are no longer valid.
-          if (error.statusCode === 404 || error.statusCode === 410) {
+          result.sent++;
+        } catch (error) {
+          result.failed++;
+
+          if ([404, 410].includes(error.statusCode)) {
             await PushSubscription.deleteOne({
               _id: subscription._id
             });
+
+            result.removed++;
           }
+
+          console.error(
+            "Push delivery failed:",
+            error.statusCode || error.message
+          );
         }
       })
     );
+
+    return result;
   } catch (error) {
-    console.error("Push notification service error:", error.message);
+    console.error("Push service error:", error.message);
+    return result;
   }
 };

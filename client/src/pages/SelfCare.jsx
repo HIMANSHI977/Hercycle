@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Heart,
   Activity,
@@ -9,15 +8,16 @@ import {
   Flower2
 } from "lucide-react";
 
+import API from "../services/api.js";
 import "../styles/SelfCare.css";
 
 const symptomOptions = [
-  { id: "cramps", label: "Period cramps", icon: "🌸" },
-  { id: "bloating", label: "Bloating", icon: "🌿" },
-  { id: "backPain", label: "Back pain", icon: "💗" },
-  { id: "fatigue", label: "Fatigue", icon: "🌙" },
-  { id: "headache", label: "Headache", icon: "✨" },
-  { id: "moodChanges", label: "Mood changes", icon: "🦋" }
+  { id: "cramps", label: "Period cramps", icon: "🌸", category: "pain" },
+  { id: "bloating", label: "Bloating", icon: "🌿", category: "pain" },
+  { id: "backPain", label: "Back pain", icon: "💗", category: "pain" },
+  { id: "fatigue", label: "Fatigue", icon: "🌙", category: "relaxation" },
+  { id: "headache", label: "Headache", icon: "✨", category: "relaxation" },
+  { id: "moodChanges", label: "Mood changes", icon: "🦋", category: "relaxation" }
 ];
 
 const recommendations = {
@@ -184,8 +184,109 @@ const recommendations = {
   }
 };
 
+const poseSafety = {
+  "Child's Pose": {
+    difficulty: "Beginner",
+    instructions: [
+      "Kneel comfortably",
+      "Bring hips towards heels",
+      "Rest arms forward and breathe slowly"
+    ],
+    precautions: "Avoid if kneeling or deep hip flexion causes pain. Use a cushion or folded blanket."
+  },
+  "Butterfly Pose": {
+    difficulty: "Beginner",
+    instructions: [
+      "Sit with a comfortable back",
+      "Join the soles of your feet",
+      "Let knees relax outward without forcing"
+    ],
+    precautions: "Avoid forcing the stretch or if it causes sharp hip or knee pain."
+  },
+  "Cat-Cow Stretch": {
+    difficulty: "Beginner",
+    instructions: [
+      "Begin on hands and knees",
+      "Slowly round and lower the back",
+      "Move with comfortable breathing"
+    ],
+    precautions: "Use a small range of motion and avoid if wrists or back are painful."
+  },
+  "Knees-to-Chest Pose": {
+    difficulty: "Beginner",
+    instructions: [
+      "Lie comfortably on the back",
+      "Bring knees toward the chest",
+      "Hold only if comfortable"
+    ],
+    precautions: "Avoid severe or sudden abdominal pain and seek care if pain is concerning."
+  },
+  "Legs-Up-the-Wall": {
+    difficulty: "Beginner",
+    instructions: [
+      "Sit near a wall",
+      "Lie back and rest legs against it",
+      "Relax shoulders and breathe naturally"
+    ],
+    precautions: "Stop if it causes dizziness, pressure or discomfort."
+  },
+  "Seated Breathing": {
+    difficulty: "Beginner",
+    instructions: [
+      "Sit comfortably",
+      "Relax shoulders",
+      "Breathe slowly without holding breath"
+    ],
+    precautions: "Stop if breathing feels strained, dizzy or uncomfortable."
+  },
+  "Gentle Neck Relaxation": {
+    difficulty: "Beginner",
+    instructions: [
+      "Sit comfortably",
+      "Slowly tilt one side",
+      "Return to center and repeat gently"
+    ],
+    precautions: "Do not pull or force the neck. Stop for dizziness or pain."
+  }
+};
+
 const SelfCare = () => {
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
+  const [personalizedSummary, setPersonalizedSummary] = useState("");
+  const [symptomFilter, setSymptomFilter] = useState("all");
+
+  useEffect(() => {
+    const fetchPersonalizedCare = async () => {
+      try {
+        const response = await API.get("/symptoms");
+        const records = response.data?.records || [];
+        const recent = records.slice(0, 3);
+
+        if (recent.length === 0) return;
+
+        const moods = [...new Set(recent.map((record) => record.mood).filter(Boolean))];
+        const symptoms = [...new Set(recent.flatMap((record) => record.symptoms || []))];
+
+        const readableSymptoms = symptoms
+          .slice(0, 3)
+          .map((symptom) => symptom.replace(/_/g, " "))
+          .join(", ");
+
+        const readableMoods = moods
+          .slice(0, 2)
+          .map((mood) => mood.replace(/_/g, " "))
+          .join(" and ");
+
+        setPersonalizedSummary(
+          `From your recent records, you noted ${readableSymptoms || "wellness concerns"}${readableMoods ? ` and felt ${readableMoods}` : ""}. Use the suggestions below as general comfort ideas.`
+        );
+      } catch (error) {
+        console.error("Unable to load symptom personalization:", error);
+      }
+    };
+
+    fetchPersonalizedCare();
+  }, []);
 
   const toggleSymptom = (symptomId) => {
     setSelectedSymptoms((previous) =>
@@ -195,11 +296,22 @@ const SelfCare = () => {
     );
   };
 
-  const selectedRecommendations = selectedSymptoms.map(
+  const filteredRecommendations = symptomFilter === "all"
+    ? selectedSymptoms
+    : selectedSymptoms.filter((symptomId) => {
+        const option = symptomOptions.find((item) => item.id === symptomId);
+        return option?.category === symptomFilter;
+      });
+
+  const selectedRecommendations = filteredRecommendations.map(
     (symptom) => ({
       symptom,
       ...recommendations[symptom]
     })
+  );
+
+  const filteredSymptomOptions = symptomOptions.filter(symptom => 
+    symptomFilter === "all" || symptom.category === symptomFilter
   );
 
   return (
@@ -248,8 +360,32 @@ const SelfCare = () => {
           </span>
         </div>
 
+        <div className="selfcare-symptom-filter">
+          <button
+            type="button"
+            className={symptomFilter === "all" ? "active" : ""}
+            onClick={() => setSymptomFilter("all")}
+          >
+            All
+          </button>
+          <button
+            type="button"
+            className={symptomFilter === "pain" ? "active" : ""}
+            onClick={() => setSymptomFilter("pain")}
+          >
+            Pain
+          </button>
+          <button
+            type="button"
+            className={symptomFilter === "relaxation" ? "active" : ""}
+            onClick={() => setSymptomFilter("relaxation")}
+          >
+            Relaxation
+          </button>
+        </div>
+
         <div className="symptom-grid">
-          {symptomOptions.map((symptom) => {
+          {filteredSymptomOptions.map((symptom) => {
             const isSelected = selectedSymptoms.includes(
               symptom.id
             );
@@ -324,9 +460,27 @@ const SelfCare = () => {
 
                       <p>{pose.description}</p>
 
+                      <span className="pose-difficulty">
+                        {poseSafety[pose.name]?.difficulty || "Beginner"}
+                      </span>
+
+                      {poseSafety[pose.name]?.instructions && (
+                        <ol className="pose-instructions">
+                          {poseSafety[pose.name].instructions.map((instruction) => (
+                            <li key={instruction}>{instruction}</li>
+                          ))}
+                        </ol>
+                      )}
+
                       <div className="pose-benefit">
                         {pose.benefit}
                       </div>
+
+                      {poseSafety[pose.name]?.precautions && (
+                        <div className="pose-precaution">
+                          <strong>Precaution:</strong> {poseSafety[pose.name].precautions}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -355,6 +509,13 @@ const SelfCare = () => {
             Select a symptom above to explore suitable
             gentle stretches and wellness tips.
           </p>
+        </div>
+      )}
+
+      {personalizedSummary && (
+        <div className="selfcare-personalized-summary">
+          <Sparkles size={17} />
+          <p>{personalizedSummary}</p>
         </div>
       )}
 

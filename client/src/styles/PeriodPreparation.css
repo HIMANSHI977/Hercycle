@@ -1,0 +1,292 @@
+.period-preparation-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.period-preparation-header,
+.preparation-card-heading,
+.preparation-checklist-row,
+.preparation-add-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.period-preparation-eyebrow,
+.preparation-card-heading span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--hc-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.period-preparation-header h1 {
+  margin: 8px 0;
+  color: #493638;
+  font-size: clamp(26px, 4vw, 36px);
+}
+
+.period-preparation-header p {
+  color: #917f80;
+  line-height: 1.7;
+}
+
+.period-preparation-refresh {
+  padding: 10px 14px;
+  border: 1px solid #ead9d7;
+  border-radius: 10px;
+  background: #fffaf8;
+  color: #80696a;
+}
+
+.period-preparation-message,
+.period-preparation-loading {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.period-preparation-message.error {
+  background: #fff1ef;
+  color: #9b5558;
+}
+
+.period-preparation-message.success {
+  background: #edf5ee;
+  color: #58715b;
+}
+
+.period-estimate-card,
+.preparation-checklist-card,
+.preparation-detail-card {
+  border: 1px solid #ead9d7;
+  border-radius: 18px;
+  background: #fffdfc;
+  box-shadow: 0 8px 24px rgba(110, 75, 75, 0.05);
+}
+
+.period-estimate-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 22px;
+}
+
+.period-estimate-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f6e4e2;
+  color: #b7797c;
+}
+
+.period-estimate-card span {
+  color: #b7797c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.period-estimate-card h2 {
+  margin: 5px 0;
+  color: #544244;
+}
+
+.period-estimate-card p,
+.period-estimate-card small,
+.preparation-detail-card p,
+.preparation-detail-card small {
+  color: #80696a;
+}
+
+.preparation-checklist-card {
+  margin-top: 18px;
+  padding: 22px;
+}
+
+.preparation-card-heading h2 {
+  margin-top: 5px;
+  color: #544244;
+}
+
+.preparation-card-heading strong {
+  color: #80696a;
+  font-size: 13px;
+}
+
+.preparation-progress {
+  width: 100%;
+  height: 10px;
+  margin: 16px 0;
+  border: none;
+  border-radius: 20px;
+  accent-color: #b7797c;
+}
+
+.preparation-checklist {
+  display: grid;
+  gap: 8px;
+}
+
+.preparation-checklist-row {
+  gap: 10px;
+  padding: 11px;
+  border-radius: 10px;
+  background: #faf7f5;
+}
+
+.preparation-checklist-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  color: #625254;
+}
+
+.preparation-checklist-row input {
+  width: 17px;
+  height: 17px;
+  accent-color: #b7797c;
+}
+
+.preparation-checklist-row label > svg {
+  color: #b7797c;
+}
+
+.preparation-checklist-row span.checked {
+  color: #988786;
+  text-decoration: line-through;
+}
+
+.preparation-checklist-row button {
+  background: transparent;
+  color: #9b7375;
+  font-size: 12px;
+}
+
+.preparation-add-item {
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.preparation-add-item input {
+  min-width: 0;
+  flex: 1;
+  padding: 11px;
+  border: 1px solid #ead9d7;
+  border-radius: 10px;
+}
+
+.preparation-add-item button,
+.preparation-save-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 10px;
+  background: #b7797c;
+  color: #fff;
+}
+
+.preparation-add-item button {
+  padding: 10px 13px;
+}
+
+.preparation-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.preparation-detail-card {
+  padding: 18px;
+}
+
+.preparation-detail-card label {
+  display: block;
+  margin-bottom: 8px;
+  color: #544244;
+  font-weight: 700;
+}
+
+.preparation-detail-card select,
+.preparation-detail-card textarea {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ead9d7;
+  border-radius: 10px;
+  background: #fff;
+  color: #4e4142;
+  resize: vertical;
+}
+
+.preparation-detail-card p {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.preparation-detail-card small {
+  display: block;
+  margin-top: 5px;
+  text-align: right;
+}
+
+.preparation-save-button {
+  margin-top: 18px;
+  padding: 12px 17px;
+}
+
+.preparation-empty {
+  padding: 20px;
+  text-align: center;
+  color: #80696a;
+}
+
+@media (max-width: 700px) {
+  .period-preparation-page {
+    padding: 20px;
+  }
+
+  .period-preparation-header {
+    align-items: flex-start;
+  }
+
+  .preparation-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .period-preparation-header,
+  .preparation-card-heading,
+  .preparation-checklist-row,
+  .preparation-add-item {
+    align-items: flex-start;
+  }
+
+  .period-preparation-header,
+  .preparation-card-heading,
+  .preparation-add-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .period-estimate-card {
+    align-items: flex-start;
+  }
+
+  .preparation-add-item input,
+  .preparation-add-item button {
+    width: 100%;
+  }
+}

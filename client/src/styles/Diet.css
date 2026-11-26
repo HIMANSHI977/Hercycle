@@ -1,4 +1,3 @@
-
 .diet-page {
   width: 100%;
   max-width: 1200px;
@@ -209,7 +208,7 @@
 }
 
 .diet-phase-intro.peach {
-  background: #f9eee3;
+  background: linear-gradient(115deg, var(--hc-primary-soft), var(--hc-sage-soft), var(--hc-accent-soft));
 }
 
 .diet-phase-intro.lavender {
@@ -412,6 +411,22 @@
   margin: 0;
   font-size: 11px;
   line-height: 1.8;
+}
+
+.diet-recipe-preview {
+  margin-top: 9px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fffaf7;
+  color: #80696a;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.diet-recipe-preview strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #a66e76;
 }
 
 @media (max-width: 800px) {

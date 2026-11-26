@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +12,8 @@ import {
   Bell,
   RefreshCw,
   X,
-  Plus
+  Plus,
+  ShoppingBag
 } from "lucide-react";
 
 import "../styles/Dashboard.css";
@@ -42,7 +42,6 @@ const formatDate = (date) => {
 };
 
 const Dashboard = () => {
-  // All hooks must be called inside the component.
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -60,7 +59,70 @@ const Dashboard = () => {
   const [dueNotification, setDueNotification] = useState(null);
   const [notificationError, setNotificationError] = useState("");
 
+  // Symptom insights state
+  const [symptomInsights, setSymptomInsights] = useState(null);
+  const [symptomInsightsLoading, setSymptomInsightsLoading] = useState(true);
+  const [symptomInsightsError, setSymptomInsightsError] = useState("");
+
+  const [productCount, setProductCount] = useState(0);
+  const [lowStockCount, setLowStockCount] = useState(0);
+
+  const [symptomGuidance, setSymptomGuidance] = useState(null);
+  const [guidanceLoading, setGuidanceLoading] = useState(true);
+
   const processedReminders = useRef(new Set());
+
+  // Fetch symptom insights
+  const fetchSymptomInsights = useCallback(async () => {
+    try {
+      setSymptomInsightsLoading(true);
+
+      const response = await API.get("/symptoms/insights");
+
+      setSymptomInsights(response.data?.data || response.data);
+      setSymptomInsightsError("");
+    } catch (error) {
+      console.error("Symptom insights error:", error);
+
+      setSymptomInsightsError(
+        error.response?.data?.message ||
+        "Unable to load symptom insights."
+      );
+    } finally {
+      setSymptomInsightsLoading(false);
+    }
+  }, []);
+
+  // Fetch product inventory summary
+  const fetchProductStock = useCallback(async () => {
+    try {
+      const response = await API.get("/products");
+      setProductCount(response.data.count || 0);
+      setLowStockCount(response.data.lowStockCount || 0);
+    } catch (error) {
+      console.error("Product stock summary error:", error);
+    }
+  }, []);
+
+  // Fetch symptom guidance
+  const fetchSymptomGuidance = useCallback(async () => {
+    try {
+      setGuidanceLoading(true);
+      const response = await API.get("/symptoms/guidance");
+      setSymptomGuidance(response.data);
+    } catch (error) {
+      console.error("Symptom guidance error:", error);
+      setSymptomGuidance(null);
+    } finally {
+      setGuidanceLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchSymptomInsights();
+    fetchProductStock();
+    fetchSymptomGuidance();
+  }, [fetchSymptomInsights, fetchProductStock, fetchSymptomGuidance]);
 
   // Show desktop notification using Service Worker.
   const showDesktopNotification = useCallback(async (reminder) => {
@@ -390,8 +452,11 @@ const Dashboard = () => {
         <button
           className="text-button"
           type="button"
-          onClick={refreshDashboard}
-          disabled={loading}
+          onClick={() => {
+            refreshDashboard();
+            fetchSymptomInsights();
+          }}
+          disabled={loading || symptomInsightsLoading}
         >
           Refresh <RefreshCw size={16} />
         </button>
@@ -457,7 +522,208 @@ const Dashboard = () => {
               </p>
             </div>
 
+            {/* Product Stock */}
+            <div className="wellness-card">
+              <div className="wellness-icon">
+                <ShoppingBag size={24} />
+              </div>
+
+              <span>PRODUCT STOCK</span>
+
+              <h3>{productCount} tracked</h3>
+
+              <p>
+                {lowStockCount > 0
+                  ? `${lowStockCount} item${lowStockCount === 1 ? "" : "s"} below the set stock level.`
+                  : "Your tracked products have enough stock."}
+              </p>
+
+              <button type="button" onClick={() => navigate("/product-stock")}>
+                Manage stock <ArrowRight size={16} />
+              </button>
+            </div>
+
           </div>
+
+          {/* Symptom Insights */}
+          <section className="symptom-insights">
+
+            <div className="section-heading">
+              <div>
+                <span className="eyebrow">
+                  UNDERSTAND YOUR BODY
+                </span>
+
+                <h2>Your symptom insights</h2>
+
+                <p className="insights-subtitle">
+                  A look at your recorded symptoms over the last 30 days.
+                </p>
+              </div>
+            </div>
+
+            {symptomInsightsLoading ? (
+              <p>Loading symptom insights...</p>
+            ) : symptomInsightsError ? (
+              <p className="dashboard-error">
+                {symptomInsightsError}
+              </p>
+            ) : !symptomInsights?.totalRecords ? (
+              <div className="insights-empty">
+                <Heart size={30} />
+
+                <h3>Your wellness journey starts here</h3>
+
+                <p>
+                  Record your symptoms to discover patterns in your
+                  physical and emotional wellbeing.
+                </p>
+              </div>
+            ) : (
+              <>
+                {/* Summary */}
+                <div className="insights-summary">
+                  <div>
+                    <span>TOTAL RECORDS</span>
+                    <strong>{symptomInsights.totalRecords}</strong>
+                  </div>
+
+                  <div>
+                    <span>SYMPTOMS RECORDED</span>
+                    <strong>{symptomInsights.totalSymptoms}</strong>
+                  </div>
+
+                  <div>
+                    <span>TRACKING PERIOD</span>
+                    <strong>30 days</strong>
+                  </div>
+                </div>
+
+                <div className="insights-grid">
+
+                  {/* Frequent Symptoms */}
+                  <div className="insights-card">
+                    <h3>Most frequent symptoms</h3>
+
+                    <p>Your commonly recorded symptoms.</p>
+
+                    {symptomInsights.mostFrequentSymptoms?.length ? (
+                      symptomInsights.mostFrequentSymptoms
+                        .slice(0, 5)
+                        .map((item) => (
+                          <div
+                            className="insight-item"
+                            key={item.symptom}
+                          >
+                            <span>
+                              {item.symptom.replace(/_/g, " ")}
+                            </span>
+
+                            <strong>{item.count}</strong>
+                          </div>
+                        ))
+                    ) : (
+                      <p>No symptom data available.</p>
+                    )}
+                  </div>
+
+                  {/* Severity Distribution */}
+                  <div className="insights-card">
+                    <h3>Severity distribution</h3>
+
+                    <p>
+                      How intense your recorded symptoms were.
+                    </p>
+
+                    {["mild", "moderate", "severe"].map((level) => {
+                      const count =
+                        symptomInsights.severityDistribution?.[level] || 0;
+
+                      const total = symptomInsights.totalRecords || 1;
+                      const percentage = (count / total) * 100;
+
+                      return (
+                        <div className="severity-item" key={level}>
+                          <div className="severity-label">
+                            <span>{level}</span>
+                            <strong>{count}</strong>
+                          </div>
+
+                          <div className="severity-track">
+                            <div
+                              className={`severity-fill ${level}`}
+                              style={{ width: `${percentage}%` }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Mood Distribution */}
+                  <div className="insights-card">
+                    <h3>Mood patterns</h3>
+
+                    <p>Your recorded emotional patterns.</p>
+
+                    {Object.entries(
+                      symptomInsights.moodDistribution || {}
+                    ).length ? (
+                      Object.entries(
+                        symptomInsights.moodDistribution
+                      ).map(([mood, count]) => (
+                        <div className="insight-item" key={mood}>
+                          <span>{mood}</span>
+                          <strong>{count}</strong>
+                        </div>
+                      ))
+                    ) : (
+                      <p>No mood data available.</p>
+                    )}
+                  </div>
+
+                </div>
+
+                {/* Recent History */}
+                <div className="insights-card recent-history">
+                  <h3>Recent symptom history</h3>
+
+                  {symptomInsights.recentHistory?.length ? (
+                    symptomInsights.recentHistory.map((record) => (
+                      <div
+                        className="history-item"
+                        key={record._id}
+                      >
+                        <div>
+                          <strong>
+                            {record.symptoms
+                              .map((item) => item.replace(/_/g, " "))
+                              .join(", ")}
+                          </strong>
+
+                          <span>{formatDate(record.date)}</span>
+                        </div>
+
+                        <span
+                          className={`history-severity ${record.severity}`}
+                        >
+                          {record.severity}
+                        </span>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No recent history available.</p>
+                  )}
+                </div>
+
+                <p className="insights-disclaimer">
+                  These insights summarize your recorded entries.
+                  They are not medical diagnoses or predictions.
+                </p>
+              </>
+            )}
+
+          </section>
 
           {/* Reminders */}
           <div className="section-heading">
@@ -518,7 +784,7 @@ const Dashboard = () => {
             Discover relaxing movements for your body.
           </p>
 
-          <button type="button">
+          <button type="button" onClick={() => navigate("/self-care")}> 
             Explore yoga <ArrowRight size={16} />
           </button>
         </div>
@@ -537,7 +803,7 @@ const Dashboard = () => {
             Find nutritious Indian meals and food ideas.
           </p>
 
-          <button type="button">
+          <button type="button" onClick={() => navigate("/diet")}> 
             Explore meals <ArrowRight size={16} />
           </button>
         </div>
@@ -556,7 +822,7 @@ const Dashboard = () => {
             Make time for your physical and emotional wellbeing.
           </p>
 
-          <button type="button">
+          <button type="button" onClick={() => navigate("/self-care")}> 
             Explore tips <ArrowRight size={16} />
           </button>
         </div>
@@ -580,10 +846,44 @@ const Dashboard = () => {
           </p>
         </div>
 
-        <button className="ai-button" type="button">
+        <button
+          className="ai-button"
+          type="button"
+          onClick={() => navigate("/ai-assistant")}
+        >
           Start conversation <ArrowRight size={17} />
         </button>
       </div>
+
+      {/* Symptom Guidance Panel */}
+      {!guidanceLoading && symptomGuidance?.warnings?.length > 0 && (
+        <section className="symptom-guidance-panel">
+          <div className="symptom-guidance-heading">
+            <div>
+              <span className="eyebrow">HEALTH ATTENTION</span>
+              <h2>Your symptom guidance</h2>
+            </div>
+          </div>
+
+          {symptomGuidance.warnings.map((warning) => (
+            <article
+              className={`symptom-guidance-card ${warning.level}`}
+              key={`${warning.level}-${warning.title}`}
+            >
+              <Heart size={21} />
+              <div>
+                <h3>{warning.title}</h3>
+                <p>{warning.message}</p>
+                <strong>{warning.action}</strong>
+              </div>
+            </article>
+          ))}
+
+          <p className="symptom-guidance-disclaimer">
+            {symptomGuidance.disclaimer}
+          </p>
+        </section>
+      )}
 
     </div>
   );

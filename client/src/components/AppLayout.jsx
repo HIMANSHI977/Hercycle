@@ -7,6 +7,7 @@ import Sidebar from "./Sidebar.jsx";
 
 import "../styles/App.css";
 import "../styles/AppLayout.css";
+import "../styles/GlobalDesign.css";
 
 const AppLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);

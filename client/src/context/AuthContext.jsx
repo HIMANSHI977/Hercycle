@@ -62,8 +62,9 @@ const AuthProvider = ({ children }) => {
 
     localStorage.setItem("hercycle_token", token);
 
-    setUser(user);
-    connectSocket(token);
+   disconnectSocket();
+setUser(user);
+connectSocket(token);
 
     return response.data;
   };
@@ -79,8 +80,9 @@ const AuthProvider = ({ children }) => {
 
     localStorage.setItem("hercycle_token", token);
 
-    setUser(user);
-    connectSocket(token);
+   disconnectSocket();
+setUser(user);
+connectSocket(token);
 
     return response.data;
   };

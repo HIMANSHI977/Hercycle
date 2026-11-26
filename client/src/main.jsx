@@ -1,4 +1,3 @@
-
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
@@ -22,6 +21,9 @@ if ("serviceWorker" in navigator) {
       );
     });
 }
+
+const savedTheme = localStorage.getItem("hercycle_theme") || "light";
+document.documentElement.dataset.theme = savedTheme;
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

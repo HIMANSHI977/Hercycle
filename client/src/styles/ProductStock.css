@@ -1,0 +1,289 @@
+.product-stock-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.product-stock-header,
+.product-stock-summary,
+.product-stock-form-actions,
+.product-stock-list-heading,
+.product-stock-card,
+.product-stock-actions {
+  display: flex;
+  align-items: center;
+}
+
+.product-stock-header {
+  justify-content: space-between;
+}
+
+.product-stock-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #b7797c;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.product-stock-header h1 {
+  margin: 8px 0;
+  color: #493638;
+  font-size: clamp(26px, 4vw, 36px);
+}
+
+.product-stock-header p {
+  color: #917f80;
+}
+
+.product-stock-header button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 13px;
+  border: 1px solid #ead9d7;
+  border-radius: 10px;
+  background: #fffaf8;
+  color: #80696a;
+}
+
+.product-stock-message {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.product-stock-message.error {
+  background: #fff1ef;
+  color: #9b5558;
+}
+
+.product-stock-message.success {
+  background: #edf5ee;
+  color: #58715b;
+}
+
+.product-stock-summary {
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.product-stock-summary>div {
+  flex: 1;
+  padding: 18px;
+  border: 1px solid #ead9d7;
+  border-radius: 15px;
+  background: #fffdfc;
+}
+
+.product-stock-summary span {
+  display: block;
+  margin: 8px 0 4px;
+  color: #917f80;
+  font-size: 11px;
+}
+
+.product-stock-summary strong {
+  color: #544244;
+  font-size: 22px;
+}
+
+.product-stock-summary .low-stock {
+  border-color: #e5b7ad;
+  background: #fff7f5;
+}
+
+.product-stock-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) 1fr;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.product-stock-form,
+.product-stock-list {
+  padding: 20px;
+  border: 1px solid #ead9d7;
+  border-radius: 18px;
+  background: #fffdfc;
+}
+
+.product-stock-form h2,
+.product-stock-list-heading h2 {
+  color: #544244;
+}
+
+.product-stock-form label {
+  display: block;
+  margin: 13px 0 6px;
+  color: #80696a;
+  font-size: 13px;
+}
+
+.product-stock-form input,
+.product-stock-form select,
+.product-stock-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ead9d7;
+  border-radius: 10px;
+  background: #fff;
+  color: #4e4142;
+}
+
+.product-stock-form textarea {
+  resize: vertical;
+}
+
+.product-stock-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.product-stock-form-actions {
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.product-stock-form-actions button {
+  padding: 10px 13px;
+  border-radius: 10px;
+  background: #b7797c;
+  color: #fff;
+}
+
+.product-stock-form-actions .product-stock-cancel {
+  background: #f5edea;
+  color: #80696a;
+}
+
+.product-stock-list-heading {
+  justify-content: space-between;
+}
+
+.product-stock-list-heading span {
+  color: #917f80;
+  font-size: 12px;
+}
+
+.product-stock-loading,
+.product-stock-empty {
+  text-align: center;
+  color: #80696a;
+  padding: 35px;
+}
+
+.product-stock-empty h3 {
+  margin: 8px 0;
+  color: #544244;
+}
+
+.product-stock-cards {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.product-stock-card {
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #f0e4e0;
+  border-radius: 12px;
+  background: #faf8f6;
+}
+
+.product-stock-card.low {
+  border-color: #e4bdb3;
+  background: #fff9f7;
+}
+
+.product-stock-card>div:first-child {
+  flex: 1;
+}
+
+.product-stock-card span {
+  color: #b7797c;
+  font-size: 11px;
+}
+
+.product-stock-card h3 {
+  margin: 4px 0;
+  color: #544244;
+}
+
+.product-stock-card p,
+.product-stock-card small {
+  display: block;
+  color: #80696a;
+}
+
+.product-stock-card small {
+  margin-top: 3px;
+}
+
+.product-low-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #9b5558;
+  font-size: 12px;
+}
+
+.product-stock-actions {
+  gap: 5px;
+}
+
+.product-stock-actions button {
+  padding: 8px;
+  border-radius: 8px;
+  background: #f1e6e3;
+  color: #80696a;
+}
+
+@media (max-width: 800px) {
+  .product-stock-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .product-stock-page {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .product-stock-header {
+    align-items: flex-start;
+  }
+
+  .product-stock-summary,
+  .product-stock-card {
+    align-items: flex-start;
+  }
+
+  .product-stock-summary {
+    flex-direction: column;
+  }
+
+  .product-stock-summary>div {
+    width: 100%;
+  }
+
+  .product-stock-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-stock-card {
+    flex-direction: column;
+  }
+
+  .product-stock-actions {
+    align-self: flex-end;
+  }
+}
